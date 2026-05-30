@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lontara Hospital - SIMRS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--pri:#0D9488;--pri-dk:#0F766E;--acc:#F59E0B;--bg:#F0FDFA;--sf:#FFF;--tx:#1E293B;--bd:#E2E8F0;--dn:#EF4444;--ok:#10B981;--inf:#3B82F6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden}
+.fd{font-family:'Playfair Display',serif}
+.pg{display:none;min-height:100vh}.pg.on{display:block}
+.sb{width:260px;height:100vh;background:linear-gradient(180deg,#0F766E,#0D9488 50%,#14B8A6);position:fixed;left:0;top:0;z-index:40;transition:transform .3s;overflow-y:auto}.sb.off{transform:translateX(-260px)}
+.mc{margin-left:260px;transition:margin .3s}.mc.wd{margin-left:0}
+.ni{padding:10px 18px;cursor:pointer;transition:all .2s;border-left:3px solid transparent;color:rgba(255,255,255,.7);font-size:12px;display:flex;align-items:center;gap:9px}.ni:hover,.ni.on{background:rgba(255,255,255,.15);border-left-color:var(--acc);color:#fff}
+.cd{background:var(--sf);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid var(--bd);overflow:hidden}
+.bt{padding:7px 16px;border-radius:8px;font-weight:500;cursor:pointer;transition:all .15s;font-size:12px;border:none;display:inline-flex;align-items:center;gap:5px}.bt:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.bp{background:var(--pri);color:#fff}.bp:hover{background:var(--pri-dk)}
+.ba{background:var(--acc);color:#fff}.bdd{background:var(--dn);color:#fff}.bo{background:transparent;border:1.5px solid var(--pri);color:var(--pri)}.bo:hover{background:var(--pri);color:#fff}
+.bsm{padding:4px 10px;font-size:11px}
+input,select,textarea{padding:8px 12px;border:1.5px solid var(--bd);border-radius:8px;font-family:'Poppins',sans-serif;font-size:12px;transition:border .2s;width:100%;background:#fff}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--pri);box-shadow:0 0 0 3px rgba(13,148,136,.1)}
+table{width:100%;border-collapse:collapse}
+thead{background:linear-gradient(135deg,var(--pri),var(--pri-dk))}
+th{color:#fff;font-weight:600;padding:10px 10px;text-align:left;font-size:11px;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--bd);font-size:11px}
+tr:hover td{background:rgba(13,148,136,.03)}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .25s}.mo.on{opacity:1;pointer-events:all}
+.mx{background:#fff;border-radius:16px;max-width:620px;width:95%;max-height:85vh;overflow-y:auto;transform:scale(.9);transition:transform .25s;box-shadow:0 25px 50px rgba(0,0,0,.15)}.mo.on .mx{transform:scale(1)}
+.tt{position:fixed;top:20px;right:20px;z-index:200;padding:12px 22px;border-radius:10px;color:#fff;font-weight:500;font-size:13px;transform:translateX(130%);transition:transform .3s;box-shadow:0 8px 24px rgba(0,0,0,.15)}.tt.on{transform:translateX(0)}.tt.ts{background:var(--ok)}.tt.te{background:var(--dn)}.tt.ti{background:var(--inf)}
+.cw{position:fixed;bottom:20px;right:20px;z-index:50}
+.cb{width:54px;height:54px;border-radius:50%;background:var(--pri);color:#fff;border:none;cursor:pointer;font-size:20px;box-shadow:0 6px 20px rgba(13,148,136,.4);transition:all .3s}.cb:hover{transform:scale(1.1)}
+.cx{position:absolute;bottom:64px;right:0;width:340px;height:450px;background:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.15);display:none;flex-direction:column;overflow:hidden}.cx.op{display:flex}
+.bg{padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600}
+.bgs{background:#D1FAE5;color:#065F46}.bgw{background:#FEF3C7;color:#92400E}.bgd{background:#FEE2E2;color:#991B1B}.bgi{background:#DBEAFE;color:#1E40AF}.bgp{background:#EDE9FE;color:#5B21B6}.bgo{background:#FFF7ED;color:#9A3412}
+.hp{background-image:radial-gradient(circle at 20% 50%,rgba(13,148,136,.08) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(245,158,11,.06) 0%,transparent 50%)}
+.po{border:2px solid var(--bd);border-radius:12px;padding:16px;cursor:pointer;transition:all .2s;text-align:center}.po:hover{border-color:var(--pri);background:rgba(13,148,136,.03)}.po.sl{border-color:var(--pri);background:rgba(13,148,136,.08);box-shadow:0 0 0 3px rgba(13,148,136,.1)}
+.stars i{cursor:pointer;font-size:22px;color:#D1D5DB;transition:color .15s}.stars i.active{color:#F59E0B}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.6)}50%{box-shadow:0 0 0 6px rgba(16,185,129,0)}}
+.afu{animation:fu .6s ease-out both}.afl{animation:fl 3s ease-in-out infinite}.apl{animation:pl 2s ease-in-out infinite}
+.pulse-dot{animation:pulse-dot 2s ease-in-out infinite}
+.sb-thin::-webkit-scrollbar{width:5px}.sb-thin::-webkit-scrollbar-track{background:#f1f1f1;border-radius:3px}.sb-thin::-webkit-scrollbar-thumb{background:#c1c1c1;border-radius:3px}
+.dm{background:#fff;border-radius:12px;padding:16px;border:1px solid var(--bd);transition:all .2s}.dm:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-2px)}
+.di{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.day-tab{padding:8px 14px;border:none;background:transparent;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:600;font-size:12px;color:var(--bd);border-bottom:2px solid transparent;transition:all .2s;border-radius:8px 8px 0 0}.day-tab:hover{color:var(--pri);background:rgba(13,148,136,.05)}.day-tab.on{color:#fff;background:var(--pri)}
+.doc-card{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:16px;transition:all .25s;position:relative;overflow:hidden}.doc-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}.doc-card.on-duty{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok)}
+.doc-card.on-duty::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ok)}
+@media print{.sb,.cw,.np{display:none!important}.mc{margin-left:0!important}}
+@media(max-width:768px){.sb{transform:translateX(-260px)}.sb.mb{transform:translateX(0)}.mc{margin-left:0}.cx{width:290px;right:-5px}}
+</style>
+</head>
+<body>
+
+<!-- ===================== HALAMAN PUBLIK ===================== -->
+<div id="pg-pub" class="pg on">
+<nav class="bg-white/90 backdrop-blur-md shadow-sm fixed w-full top-0 z-30">
+<div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img src="https://z-cdn-media.chatglm.cn/files/d1cd25ea-b149-47c9-8e29-fa6c1aef2f16.png?auth_key=1880115096-203b5bca79764ce8ae7a2658b915b4bb-0-096b8f2f0840816b4d1a4a2d30563292" alt="Logo" class="w-10 h-10 rounded-full object-cover" onerror="this.style.display='none'">
+<div><span class="font-bold text-teal-800 text-lg">Lontara Hospital</span><br><span class="text-xs text-gray-500">Sistem Informasi Rumah Sakit</span></div>
+</div>
+<div class="flex items-center gap-3">
+<a href="#jadwal-dokter" class="hidden md:block text-sm font-medium text-gray-600 hover:text-teal-700">Jadwal Dokter</a>
+<a href="#daftar" class="hidden md:block text-sm font-medium text-gray-600 hover:text-teal-700">Daftar Online</a>
+<a href="#ulasan" class="hidden md:block text-sm font-medium text-gray-600 hover:text-teal-700">Ulasan</a>
+<button onclick="goPage('pg-login')" class="bt bp bsm"><i class="fas fa-lock"></i> Admin</button>
+</div>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="hp pt-28 pb-16 px-4 relative overflow-hidden">
+<div class="absolute top-20 right-10 w-72 h-72 bg-teal-100/40 rounded-full blur-3xl"></div>
+<div class="absolute bottom-10 left-10 w-56 h-56 bg-amber-100/30 rounded-full blur-3xl"></div>
+<div class="max-w-6xl mx-auto relative">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="afu">
+<div class="inline-block bg-teal-50 text-teal-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4"><i class="fas fa-hospital-alt mr-1"></i> Rumah Sakit Terpercaya</div>
+<h1 class="fd text-4xl md:text-5xl lg:text-6xl font-black text-teal-900 leading-tight mb-6">Lontara<br>Hospital</h1>
+<p class="text-gray-600 text-lg mb-8 max-w-md leading-relaxed">Melayani dengan hati, menyembuhkan dengan ilmu. Pendaftaran online cepat dan mudah untuk semua kalangan.</p>
+<div class="flex flex-wrap gap-3">
+<a href="#jadwal-dokter" class="bt bp text-base px-8 py-3"><i class="fas fa-calendar-check"></i> Jadwal Dokter</a>
+<a href="#daftar" class="bt bo text-base px-8 py-3"><i class="fas fa-user-plus"></i> Daftar Online</a>
+</div>
+</div>
+<div class="hidden md:flex justify-center afl">
+<div class="relative">
+<div class="w-64 h-64 bg-gradient-to-br from-teal-400 to-teal-600 rounded-3xl flex items-center justify-center shadow-2xl transform rotate-3"><i class="fas fa-heartbeat text-white text-7xl opacity-80"></i></div>
+<div class="absolute -bottom-4 -left-4 bg-white rounded-xl p-3 shadow-lg"><div class="flex items-center gap-2"><div class="w-9 h-9 bg-green-100 rounded-full flex items-center justify-center"><i class="fas fa-check text-green-600 text-sm"></i></div><div><div class="text-xs text-gray-500">Terlayani</div><div class="font-bold text-teal-800">12,450+</div></div></div></div>
+<div class="absolute -top-4 -right-4 bg-white rounded-xl p-3 shadow-lg"><div class="flex items-center gap-2"><div class="w-9 h-9 bg-amber-100 rounded-full flex items-center justify-center"><i class="fas fa-star text-amber-600 text-sm"></i></div><div><div class="text-xs text-gray-500">Rating</div><div class="font-bold text-teal-800">4.9/5</div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== JADWAL DOKTER REAL-TIME ===================== -->
+<section id="jadwal-dokter" class="py-16 px-4 bg-white">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-8">
+<h2 class="fd text-3xl font-bold text-teal-900 mb-2">Jadwal Dokter</h2>
+<p class="text-gray-500">Jadwal praktek dokter hari ini dan minggu ini — diperbarui secara real-time</p>
+</div>
+
+<!-- Hari ini + jam -->
+<div class="text-center mb-6">
+<div class="inline-flex items-center gap-2 bg-teal-50 text-teal-800 px-5 py-2.5 rounded-full font-semibold text-sm">
+<i class="fas fa-calendar-day"></i>
+<span id="jd-today-label"></span>
+<span class="text-teal-500">|</span>
+<i class="fas fa-clock"></i>
+<span id="jd-clock"></span>
+</div>
+</div>
+
+<!-- Tab hari -->
+<div class="flex justify-center gap-1 mb-6 flex-wrap" id="jd-day-tabs"></div>
+
+<!-- Legend -->
+<div class="flex justify-center gap-4 mb-6 text-xs">
+<div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-green-500 inline-block pulse-dot"></span> Sedang Praktek</div>
+<div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-gray-300 inline-block"></span> Belum / Selesai</div>
+</div>
+
+<!-- Grid jadwal dokter -->
+<div id="jd-schedule-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+<!-- Kosong -->
+<div id="jd-empty" class="text-center text-gray-400 py-12 hidden"><i class="fas fa-user-md text-4xl mb-3 block"></i>Tidak ada jadwal dokter untuk hari ini</div>
+</div>
+</section>
+
+<!-- Layanan -->
+<section id="layanan" class="py-16 px-4 hp">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-10"><h2 class="fd text-3xl font-bold text-teal-900 mb-2">Layanan Kami</h2><p class="text-gray-500">Fasilitas lengkap dengan tenaga medis profesional</p></div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="svc-grid"></div>
+</div>
+</section>
+
+<!-- Pendaftaran -->
+<section id="daftar" class="py-16 px-4 bg-white">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-10"><h2 class="fd text-3xl font-bold text-teal-900 mb-2">Pendaftaran Online</h2><p class="text-gray-500">Isi formulir berikut untuk mendaftar secara online</p></div>
+<div class="cd p-6 md:p-8">
+<div class="mb-5"><label class="block text-sm font-semibold mb-2 text-gray-700">Metode Pembayaran <span class="text-red-500">*</span></label>
+<div class="grid grid-cols-3 gap-3">
+<div class="po" data-py="mandiri" onclick="selPay('mandiri')"><i class="fas fa-wallet text-xl text-teal-600 mb-1"></i><div class="font-semibold text-sm">Mandiri</div></div>
+<div class="po" data-py="asuransi" onclick="selPay('asuransi')"><i class="fas fa-shield-alt text-xl text-amber-600 mb-1"></i><div class="font-semibold text-sm">Asuransi</div></div>
+<div class="po" data-py="bpjs" onclick="selPay('bpjs')"><i class="fas fa-id-card text-xl text-blue-600 mb-1"></i><div class="font-semibold text-sm">BPJS</div></div>
+</div><input type="hidden" id="r-pay"></div>
+<div class="grid md:grid-cols-2 gap-3 mb-3">
+<div><label class="block text-sm font-semibold mb-1">Nama Lengkap *</label><input id="r-nm" placeholder="Nama lengkap"></div>
+<div><label class="block text-sm font-semibold mb-1">NIK/KTP *</label><input id="r-nik" placeholder="16 digit NIK" maxlength="16"></div>
+</div>
+<div class="grid md:grid-cols-2 gap-3 mb-3">
+<div><label class="block text-sm font-semibold mb-1">Tanggal Lahir *</label><input id="r-dob" type="date"></div>
+<div><label class="block text-sm font-semibold mb-1">Jenis Kelamin *</label><select id="r-gen"><option value="">Pilih</option><option>Laki-laki</option><option>Perempuan</option></select></div>
+</div>
+<div class="grid md:grid-cols-2 gap-3 mb-3">
+<div><label class="block text-sm font-semibold mb-1">No. Telepon *</label><input id="r-ph" placeholder="08xxxxxxxxxx"></div>
+<div><label class="block text-sm font-semibold mb-1">Poli/Unit *</label><select id="r-pol"><option value="">Pilih</option><option>Poliklinik Umum</option><option>Poliklinik Anak</option><option>Poliklinik Penyakit Dalam</option><option>Poliklinik Bedah</option><option>Poliklinik Obstetri & Ginekologi</option><option>IGD</option></select></div>
+</div>
+<div class="mb-3"><label class="block text-sm font-semibold mb-1">Alamat</label><textarea id="r-addr" rows="2" placeholder="Alamat lengkap"></textarea></div>
+<div id="f-asr" style="display:none" class="grid md:grid-cols-2 gap-3 mb-3 p-3 bg-amber-50 rounded-lg border border-amber-200"><div><label class="block text-sm font-semibold mb-1">Nama Asuransi *</label><input id="r-asr-nm"></div><div><label class="block text-sm font-semibold mb-1">No. Polis *</label><input id="r-asr-no"></div></div>
+<div id="f-bpjs" style="display:none" class="grid md:grid-cols-2 gap-3 mb-3 p-3 bg-blue-50 rounded-lg border border-blue-200"><div><label class="block text-sm font-semibold mb-1">No. BPJS *</label><input id="r-bpjs-no"></div><div><label class="block text-sm font-semibold mb-1">Faskes *</label><input id="r-faskes"></div></div>
+<div class="mb-4"><label class="block text-sm font-semibold mb-1">Keluhan</label><textarea id="r-comp" rows="2" placeholder="Keluhan utama"></textarea></div>
+<div class="flex items-start gap-2 mb-5"><input type="checkbox" id="r-agree" class="mt-1"><label for="r-agree" class="text-sm text-gray-600">Data yang diisi adalah benar</label></div>
+<button onclick="submitReg()" class="bt bp w-full py-3 text-base"><i class="fas fa-paper-plane"></i> Daftar Sekarang</button>
+</div>
+</div>
+</section>
+
+<!-- Ulasan -->
+<section id="ulasan" class="py-16 px-4 hp">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-10"><h2 class="fd text-3xl font-bold text-teal-900 mb-2">Kritik, Ulasan & Saran</h2></div>
+<div class="grid md:grid-cols-5 gap-8">
+<div class="md:col-span-2"><div class="cd p-5">
+<h3 class="font-bold text-teal-800 mb-3 text-sm"><i class="fas fa-pen-fancy mr-2"></i>Tulis Ulasan</h3>
+<div class="mb-2"><label class="block text-xs font-semibold mb-1">Nama *</label><input id="fb-nm"></div>
+<div class="mb-2"><label class="block text-xs font-semibold mb-1">Email</label><input id="fb-em" type="email"></div>
+<div class="mb-2"><label class="block text-xs font-semibold mb-1">Kategori *</label><select id="fb-kat"><option value="">Pilih</option><option value="Kritik">Kritik</option><option value="Ulasan">Ulasan</option><option value="Saran">Saran</option><option value="Pujian">Pujian</option><option value="Keluhan">Keluhan</option></select></div>
+<div class="mb-2"><label class="block text-xs font-semibold mb-1">Rating *</label><div class="stars flex gap-1" id="fb-stars"><i class="fas fa-star" data-v="1"></i><i class="fas fa-star" data-v="2"></i><i class="fas fa-star" data-v="3"></i><i class="fas fa-star" data-v="4"></i><i class="fas fa-star" data-v="5"></i></div><input type="hidden" id="fb-rating" value="0"></div>
+<div class="mb-2"><label class="block text-xs font-semibold mb-1">Unit</label><select id="fb-unit"><option value="">Opsional</option><option>Pendaftaran</option><option>Rawat Inap</option><option>Kasir</option><option>Farmasi</option><option>Humas</option></select></div>
+<div class="mb-3"><label class="block text-xs font-semibold mb-1">Pesan *</label><textarea id="fb-msg" rows="3"></textarea></div>
+<button onclick="submitFeedback()" class="bt bp w-full py-2"><i class="fas fa-paper-plane"></i> Kirim</button>
+</div></div>
+<div class="md:col-span-3"><div class="flex items-center justify-between mb-3"><h3 class="font-bold text-teal-800 text-sm">Ulasan Terbaru</h3><div id="fb-avg" class="text-xs text-gray-500"></div></div><div id="fb-list" class="space-y-3 max-h-[550px] overflow-y-auto sb-thin pr-2"></div></div>
+</div>
+</div>
+</section>
+
+<footer class="bg-teal-900 text-white py-8 px-4">
+<div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 text-sm">
+<div><h3 class="font-bold mb-2">Lontara Hospital</h3><p class="text-teal-200">Rumah sakit dengan layanan kesehatan terpadu.</p></div>
+<div><h3 class="font-bold mb-2">Kontak</h3><p class="text-teal-200"><i class="fas fa-phone mr-1"></i>(0411) 372-770</p><p class="text-teal-200"><i class="fas fa-envelope mr-1"></i>lontarax24@gmail.com</p></div>
+<div><h3 class="font-bold mb-2">Jam Operasional</h3><p class="text-teal-200">IGD: 24 Jam</p><p class="text-teal-200">Poliklinik: 08.00 - 16.00</p></div>
+</div>
+<div class="max-w-6xl mx-auto mt-6 pt-4 border-t border-teal-700 text-center text-teal-300 text-xs">&copy; 2025 Lontara Hospital. SIMRS.</div>
+</footer>
+</div>
+
+<!-- LOGIN -->
+<div id="pg-login" class="pg">
+<div class="min-h-screen flex items-center justify-center hp px-4">
+<div class="cd p-8 w-full max-w-md afu">
+<div class="text-center mb-6">
+<img src="https://z-cdn-media.chatglm.cn/files/d1cd25ea-b149-47c9-8e29-fa6c1aef2f16.png?auth_key=1880115096-203b5bca79764ce8ae7a2658b915b4bb-0-096b8f2f0840816b4d1a4a2d30563292" alt="" class="w-14 h-14 rounded-full mx-auto mb-3 object-cover" onerror="this.style.display='none'">
+<h2 class="fd text-2xl font-bold text-teal-900">Admin Login</h2><p class="text-sm text-gray-500 mt-1">Lontara Hospital SIMRS</p>
+</div>
+<div class="mb-4"><label class="block text-sm font-semibold mb-1">Username</label><input id="l-user" placeholder="user1 - user13"></div>
+<div class="mb-4"><label class="block text-sm font-semibold mb-1">Password</label><input id="l-pass" type="password" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+<div id="l-err" class="text-red-500 text-sm mb-3" style="display:none"></div>
+<button onclick="doLogin()" class="bt bp w-full py-3"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+<div class="text-center mt-4"><button onclick="goPage('pg-pub')" class="text-sm text-teal-600 hover:underline"><i class="fas fa-arrow-left"></i> Kembali</button></div>
+</div>
+</div>
+</div>
+
+<!-- ADMIN -->
+<div id="pg-admin" class="pg">
+<aside id="sbar" class="sb">
+<div class="p-4 border-b border-white/10"><div class="flex items-center gap-3">
+<img src="https://z-cdn-media.chatglm.cn/files/d1cd25ea-b149-47c9-8e29-fa6c1aef2f16.png?auth_key=1880115096-203b5bca79764ce8ae7a2658b915b4bb-0-096b8f2f0840816b4d1a4a2d30563292" alt="" class="w-8 h-8 rounded-full object-cover" onerror="this.style.display='none'">
+<div><div class="text-white font-bold text-sm">Lontara Hospital</div><div id="sb-unit" class="text-teal-200 text-xs"></div></div>
+</div></div>
+<div class="py-2" id="sb-nav"></div>
+<div class="p-4 border-t border-white/10" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent,#0F766E 20%)">
+<div class="flex items-center gap-2 mb-3"><div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"><i class="fas fa-user text-white text-xs"></i></div><div><div id="sb-name" class="text-white text-xs font-semibold"></div><div id="sb-role" class="text-teal-200 text-xs"></div></div></div>
+<button onclick="doLogout()" class="bt w-full text-white bg-white/10 hover:bg-white/20 text-xs py-2"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+</div>
+</aside>
+<main id="marea" class="mc min-h-screen">
+<header class="bg-white shadow-sm px-5 py-3 flex items-center justify-between sticky top-0 z-20">
+<div class="flex items-center gap-3"><button onclick="togSB()" class="text-gray-500 hover:text-teal-700"><i class="fas fa-bars text-lg"></i></button><h1 id="pg-title" class="font-semibold text-base text-teal-900">Dashboard</h1></div>
+<span id="hd-user" class="text-xs text-gray-400 hidden md:block"></span>
+</header>
+<div id="dash-ct" class="p-5"></div>
+</main>
+</div>
+
+<div id="mo-ov" class="mo" onclick="if(event.target===this)clModal()"><div class="mx" id="mo-ct"></div></div>
+<div id="toast" class="tt"></div>
+
+<div class="cw" id="cw">
+<button class="cb" onclick="togChat()"><i class="fas fa-comments"></i></button>
+<div class="cx" id="chat-box">
+<div class="bg-gradient-to-r from-teal-600 to-teal-500 p-3 text-white rounded-t-xl"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-2 h-2 bg-green-400 rounded-full apl"></div><span class="font-semibold text-sm">Live Chat - Humas</span></div><button onclick="togChat()" class="text-white/80 hover:text-white"><i class="fas fa-times"></i></button></div></div>
+<div id="chat-msgs" class="flex-1 p-3 overflow-y-auto sb-thin" style="max-height:270px;min-height:180px"></div>
+<div class="p-3 border-t"><input id="chat-nm" placeholder="Nama Anda" class="text-xs mb-2" style="padding:5px 8px"><div class="flex gap-2"><input id="chat-inp" placeholder="Ketik pesan..." class="text-xs flex-1" style="padding:6px 8px" onkeydown="if(event.key==='Enter')sendPubChat()"><button onclick="sendPubChat()" class="bt bp bsm"><i class="fas fa-paper-plane"></i></button></div></div>
+</div>
+</div>
+
+<script>
+/* ============================
+   KONFIGURASI UNIT
+   ============================ */
+const UC={
+user1:{name:'Kepegawaian / SDM',icon:'fa-users-cog',
+  staff:[{n:'MAHSA GALUH KIRANA R',p:'Kepala Bagian SDM'},{n:'MIFTAHUL JANNAH',p:'Staff Rekrutmen'},{n:'RIFQAH INAYAH SALSABILA',p:'Staff Penggajian'},{n:'SALMA NOVITA SARI',p:'Staff Absensi'},{n:'NURHALISA',p:'Staff Data Kepegawaian'}],
+  tabs:[
+    {id:'pegawai',title:'Daftar Pegawai',icon:'fa-user-tie',fields:[{k:'nama',l:'Nama Pegawai',t:'text'},{k:'nip',l:'NIP',t:'text'},{k:'jabatan',l:'Jabatan',t:'text'},{k:'unit',l:'Unit Kerja',t:'select',o:['Kepegawaian/SDM','Instalasi Rawat Inap','Kasir','Instalasi Bedah Sentral','Instalasi Laboratorium','Unit Laundry & Linen','PKRS','Rumah Tangga & Gudang','CSSD','Cath Lab','PICU','Humas','Pendaftaran']},{k:'status',l:'Status',t:'select',o:['Aktif','Cuti','Nonaktif']}]},
+    {id:'jadwalDokter',title:'Jadwal Dokter',icon:'fa-calendar-check',fields:[{k:'namaDokter',l:'Nama Dokter',t:'text'},{k:'spesialis',l:'Spesialisasi',t:'select',o:['Dokter Umum','Sp.PD (Penyakit Dalam)','Sp.B (Bedah)','Sp.OG (Obstetri & Ginekologi)','Sp.A (Anak)','Sp.JP (Jantung & Pembuluh Darah)','Sp.S (Saraf)','Sp.KK (Kulit & Kelamin)','Sp.THT (THT-KL)','Sp.M (Mata)','Sp.OT (Orthopedi & Traumatologi)','Sp.An (Anestesiologi)','Sp.RM (Radiologi)']},{k:'poli',l:'Poli/Unit',t:'select',o:['Poliklinik Umum','Poliklinik Penyakit Dalam','Poliklinik Bedah','Poliklinik Anak','Poliklinik Obstetri & Ginekologi','Poliklinik Jantung','Poliklinik Saraf','Poliklinik THT','Poliklinik Mata','Poliklinik Orthopedi','IGD']},{k:'hari',l:'Hari Praktek',t:'select',o:['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu']},{k:'jamMulai',l:'Jam Mulai',t:'time'},{k:'jamSelesai',l:'Jam Selesai',t:'time'},{k:'kuota',l:'Kuota Pasien',t:'number'},{k:'status',l:'Status',t:'select',o:['Aktif','Tidak Aktif']}]},
+    {id:'presensi',title:'Absensi Pegawai',icon:'fa-clipboard-check',fields:[{k:'nama',l:'Nama Pegawai',t:'text'},{k:'unit',l:'Unit',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'masuk',l:'Jam Masuk',t:'time'},{k:'keluar',l:'Jam Keluar',t:'time'},{k:'status',l:'Keterangan',t:'select',o:['Hadir','Izin','Sakit','Alpha','Cuti','Tugas Luar']}]},
+    {id:'pengaturanAkun',title:'Pengaturan Akun',icon:'fa-user-cog',custom:true}
+  ]},
+user2:{name:'Instalasi Rawat Inap',icon:'fa-bed',
+  staff:[{n:'NUR HAKIKI',p:'Kepala Instalasi'},{n:'JUMARNI MANOHARA JULIE',p:'Perawat Senior'},{n:'MUHAMMAD IRHAM MAULANA',p:'Perawat'},{n:'ASRAH',p:'Perawat'},{n:'JUWITA BAHAR',p:'Perawat'},{n:'NURMAGHFIRAH',p:'Perawat'}],
+  tabs:[{id:'kamar',title:'Data Kamar',icon:'fa-door-open',fields:[{k:'noKamar',l:'No. Kamar',t:'text'},{k:'kelas',l:'Kelas',t:'select',o:['VIP','Kelas 1','Kelas 2','Kelas 3','ICU']},{k:'kapasitas',l:'Kapasitas TT',t:'number'},{k:'terisi',l:'Terisi',t:'number'},{k:'status',l:'Status',t:'select',o:['Tersedia','Penuh','Perawatan']}]},{id:'pasienRI',title:'Pasien Rawat Inap',icon:'fa-procedures',fields:[{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'diagnosis',l:'Diagnosis',t:'text'},{k:'kamar',l:'Kamar',t:'text'},{k:'tglMasuk',l:'Tgl Masuk',t:'date'},{k:'dokter',l:'Dokter PJ',t:'text'},{k:'status',l:'Status',t:'select',o:['Rawat Inap','Siap Pulang','Rujuk']}]}]},
+user3:{name:'Kasir',icon:'fa-cash-register',staff:[{n:'NANDA AULIA KEIN',p:'Kepala Kasir'},{n:'ERZI NURFAUZI',p:'Kasir'},{n:'IRNA NOVIANTI.M',p:'Kasir'},{n:'SUCI HALIMATUL FITRI',p:'Kasir'},{n:'NUR INSANI',p:'Kasir'},{n:'SALWA AULYA PUTRI',p:'Kasir'}],tabs:[{id:'tagihan',title:'Tagihan',icon:'fa-file-invoice-dollar',fields:[{k:'noTagihan',l:'No. Tagihan',t:'text'},{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'total',l:'Total (Rp)',t:'number'},{k:'metode',l:'Metode Bayar',t:'select',o:['Mandiri','Asuransi','BPJS']},{k:'status',l:'Status',t:'select',o:['Belum Bayar','Lunas','Sebagian']}]},{id:'pembayaran',title:'Pembayaran',icon:'fa-money-bill-wave',fields:[{k:'noKwitansi',l:'No. Kwitansi',t:'text'},{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'jumlah',l:'Jumlah (Rp)',t:'number'},{k:'metode',l:'Metode',t:'select',o:['Tunai','Transfer','Debit','Kredit']}]}]},
+user4:{name:'Instalasi Bedah Sentral',icon:'fa-syringe',staff:[{n:'DHYNY FAHIRA',p:'Kepala IBS'},{n:'MAGFIRAH RAMADHANI',p:'Perawat IBS'},{n:'NAJWA ALYA PUTRI',p:'Perawat IBS'},{n:'AINI EKA INAYAH',p:'Instrumentator'},{n:'NURUL WAHIDA',p:'Staff Anestesi'}],tabs:[{id:'jadwalOp',title:'Jadwal Operasi',icon:'fa-calendar-alt',fields:[{k:'noOP',l:'No. Operasi',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'noRM',l:'No. RM',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'jam',l:'Jam',t:'time'},{k:'jenisOp',l:'Jenis Operasi',t:'text'},{k:'dokterOp',l:'Dokter Operator',t:'text'},{k:'ruang',l:'Ruang',t:'text'},{k:'status',l:'Status',t:'select',o:['Dijadwalkan','Berlangsung','Selesai','Dibatalkan']}]},{id:'tindakanBedah',title:'Riwayat Tindakan',icon:'fa-cut',fields:[{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'tindakan',l:'Tindakan',t:'text'},{k:'dokter',l:'Dokter',t:'text'},{k:'anestesi',l:'Anestesi',t:'select',o:['Umum','Regional','Lokal','Spinal']},{k:'hasil',l:'Hasil',t:'select',o:['Berhasil','Komplikasi','Dirujuk']},{k:'catatan',l:'Catatan',t:'textarea'}]}]},
+user5:{name:'Instalasi Laboratorium',icon:'fa-flask',staff:[{n:'BAITUL AMARAHI SYAM',p:'Kepala Lab'},{n:'INRI RAHMATILLA',p:'Analis Senior'},{n:'ALFI KHAERIAH AHMAD',p:'Analis Lab'},{n:'NUR ALIZA RAHMADANI. M.A',p:'Analis Lab'},{n:'SRI EKA ADILLA',p:'Pengambil Sampel'}],tabs:[{id:'permLab',title:'Pemeriksaan Lab',icon:'fa-vial',fields:[{k:'noLab',l:'No. Pemeriksaan',t:'text'},{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'jenisPemeriksaan',l:'Jenis',t:'select',o:['Darah Lengkap','Urinalisis','Kimia Darah','Hematologi','Gula Darah','Kolesterol','Fungsi Hati','Fungsi Ginjal']},{k:'dokter',l:'Dokter Pengirim',t:'text'},{k:'status',l:'Status',t:'select',o:['Permintaan','Proses','Selesai']}]},{id:'hasilLab',title:'Hasil Lab',icon:'fa-file-medical-alt',fields:[{k:'noLab',l:'No. Pemeriksaan',t:'text'},{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'parameter',l:'Parameter',t:'text'},{k:'nilai',l:'Nilai',t:'text'},{k:'satuan',l:'Satuan',t:'text'},{k:'normal',l:'Normal',t:'text'},{k:'keterangan',l:'Keterangan',t:'select',o:['Normal','Abnormal','Kritis']},{k:'tanggal',l:'Tanggal',t:'date'}]},{id:'radiologi',title:'Radiologi',icon:'fa-x-ray',fields:[{k:'noRad',l:'No. Pemeriksaan',t:'text'},{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'jenisPemeriksaan',l:'Jenis',t:'select',o:['Rontgen Thorax','Rontgen Abdomen','CT Scan Kepala','CT Scan Toraks','MRI Lumbar','USG Abdomen','USG Obstetri','Mammografi']},{k:'dokter',l:'Dokter Pengirim',t:'text'},{k:'hasil',l:'Hasil',t:'textarea'},{k:'status',l:'Status',t:'select',o:['Permintaan','Proses','Selesai']}]}]},
+user6:{name:'Unit Laundry & Linen',icon:'fa-tshirt',staff:[{n:'MULIYATI',p:'Kepala Unit'},{n:'RISNA',p:'Petugas Laundry'},{n:'REVALINA DWI MAHARANI',p:'Petugas Laundry'},{n:'HYKMA SHAKILA H',p:'Petugas Linen'},{n:'NABILA PATIKA PUTRI',p:'Petugas Linen'}],tabs:[{id:'linen',title:'Inventaris Linen',icon:'fa-blanket',fields:[{k:'jenis',l:'Jenis',t:'select',o:['Sprei','Selimut','Handuk','Gown Pasien','Sarung Bantal','Bed Cover']},{k:'jumlah',l:'Jumlah',t:'number'},{k:'kondisi',l:'Kondisi',t:'select',o:['Baik','Perlu Perbaikan','Rusak']},{k:'lokasi',l:'Lokasi',t:'text'}]},{id:'permLaundry',title:'Permintaan',icon:'fa-soap',fields:[{k:'unit',l:'Unit',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'jenisLinen',l:'Jenis Linen',t:'text'},{k:'jumlah',l:'Jumlah',t:'number'},{k:'status',l:'Status',t:'select',o:['Permintaan','Diproses','Selesai']}]}]},
+user7:{name:'PKRS',icon:'fa-bullhorn',staff:[{n:'SYAHRINA INDIRA PATIALANGI',p:'Kepala PKRS'},{n:'NUR ADELLA ATIZA',p:'Staff Edukasi'},{n:'IRMA DAMAYANTI',p:'Staff Promosi'},{n:'LAUDYA PUTRI MAFIRDHA',p:'Staff Publikasi'},{n:'NUR ANNISA',p:'Staff Dokumentasi'}],tabs:[{id:'kegiatan',title:'Kegiatan Promosi',icon:'fa-calendar-check',fields:[{k:'namaKegiatan',l:'Nama Kegiatan',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'lokasi',l:'Lokasi',t:'text'},{k:'sasaran',l:'Sasaran',t:'text'},{k:'penanggungJawab',l:'PJ',t:'text'},{k:'status',l:'Status',t:'select',o:['Perencanaan','Berlangsung','Selesai']}]},{id:'publikasi',title:'Publikasi',icon:'fa-newspaper',fields:[{k:'judul',l:'Judul',t:'text'},{k:'jenis',l:'Jenis',t:'select',o:['Media Cetak','Media Digital','Sosial Media','Spanduk']},{k:'tanggal',l:'Tanggal',t:'date'},{k:'deskripsi',l:'Deskripsi',t:'textarea'},{k:'status',l:'Status',t:'select',o:['Draft','Terbit','Arsip']}]}]},
+user8:{name:'Rumah Tangga & Gudang',icon:'fa-warehouse',staff:[{n:'KURNIA',p:'Kepala RT & Gudang'},{n:'NUR BINTANG',p:'Staff Gudang'},{n:'MUH AR RAYZAQ',p:'Staff Logistik'},{n:'NUR AINUN SYAH',p:'Staff RT'},{n:'AMELIA NUTFASARI.S',p:'Staff Kebersihan'}],tabs:[{id:'inventaris',title:'Inventaris',icon:'fa-boxes',fields:[{k:'kodeBarang',l:'Kode',t:'text'},{k:'namaBarang',l:'Nama Barang',t:'text'},{k:'kategori',l:'Kategori',t:'select',o:['ATK','Kebersihan','Peralatan','Bahan Makanan','Lainnya']},{k:'stok',l:'Stok',t:'number'},{k:'satuan',l:'Satuan',t:'text'},{k:'lokasi',l:'Lokasi',t:'text'}]},{id:'permBarang',title:'Permintaan Barang',icon:'fa-dolly',fields:[{k:'unit',l:'Unit',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'namaBarang',l:'Nama Barang',t:'text'},{k:'jumlah',l:'Jumlah',t:'number'},{k:'status',l:'Status',t:'select',o:['Diajukan','Disetujui','Dikirim','Selesai']}]}]},
+user9:{name:'CSSD',icon:'fa-shield-alt',staff:[{n:'NURUL ANNISA RAMADHANI',p:'Kepala CSSD'},{n:'DANI ARLIANI',p:'Staff Sterilisasi'},{n:'JIHAN AMALIA',p:'Staff Sterilisasi'},{n:'ANJELITA',p:'Staff Distribusi'},{n:'NURCHUSNUL SALSABILAH',p:'Staff Distribusi'}],tabs:[{id:'sterilisasi',title:'Sterilisasi',icon:'fa-atom',fields:[{k:'kodeAlat',l:'Kode',t:'text'},{k:'namaAlat',l:'Nama Alat',t:'text'},{k:'jumlah',l:'Jumlah',t:'number'},{k:'metode',l:'Metode',t:'select',o:['Autoclave','EtO Gas','Dry Heat','Plasma']},{k:'tanggal',l:'Tanggal',t:'date'},{k:'status',l:'Status',t:'select',o:['Proses','Selesai','Distribusi']}]},{id:'inventarisAlat',title:'Inventaris Alat',icon:'fa-tools',fields:[{k:'kode',l:'Kode',t:'text'},{k:'nama',l:'Nama Alat',t:'text'},{k:'jenis',l:'Jenis',t:'select',o:['Instrumen Bedah','Instrumen Perawatan','Alat Diagnostik','Lainnya']},{k:'jumlah',l:'Jumlah',t:'number'},{k:'kondisi',l:'Kondisi',t:'select',o:['Baik','Perlu Perbaikan','Rusak']},{k:'lokasi',l:'Lokasi',t:'text'}]}]},
+user10:{name:'Cath Lab',icon:'fa-heartbeat',staff:[{n:'AULIYA NOVIYANTI ASRUL',p:'Kepala Cath Lab'},{n:'DWI FITRI RAMADHANTY',p:'Teknisi'},{n:'A. NUR FADYZA ADELIYAH',p:'Perawat'},{n:'NURAFIKA',p:'Perawat'},{n:'TASYA SAPUTRI',p:'Staff Admin'}],tabs:[{id:'jadwalCath',title:'Jadwal Prosedur',icon:'fa-calendar-alt',fields:[{k:'noProsedur',l:'No. Prosedur',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'noRM',l:'No. RM',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'jam',l:'Jam',t:'time'},{k:'jenisProsedur',l:'Jenis',t:'select',o:['Kateterisasi','Angiografi','Angioplasti','Pemasangan Stent']},{k:'dokter',l:'Dokter',t:'text'},{k:'status',l:'Status',t:'select',o:['Dijadwalkan','Berlangsung','Selesai','Dibatalkan']}]},{id:'tindakanCath',title:'Riwayat Tindakan',icon:'fa-stethoscope',fields:[{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'tindakan',l:'Tindakan',t:'text'},{k:'dokter',l:'Dokter',t:'text'},{k:'hasil',l:'Hasil',t:'textarea'},{k:'catatan',l:'Catatan',t:'textarea'}]}]},
+user11:{name:'PICU',icon:'fa-baby',staff:[{n:'MUHAMMAD RIFAI',p:'Kepala PICU'},{n:'INTAN YUNUS',p:'Perawat Senior'},{n:'AYU INTAN PAPUA LESTARI',p:'Perawat'},{n:'ANDINI DAMARA',p:'Perawat'},{n:'NURINDAH AMIR',p:'Perawat'}],tabs:[{id:'pasienPICU',title:'Pasien PICU',icon:'fa-procedures',fields:[{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'usia',l:'Usia',t:'text'},{k:'diagnosis',l:'Diagnosis',t:'text'},{k:'tglMasuk',l:'Tgl Masuk',t:'date'},{k:'bed',l:'Bed',t:'text'},{k:'dokter',l:'Dokter PJ',t:'text'},{k:'status',l:'Status',t:'select',o:['Dirawat','Siap Pindah','Pulang','Meninggal']}]},{id:'monitoring',title:'Monitoring',icon:'fa-desktop-medical',fields:[{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'jam',l:'Jam',t:'time'},{k:'td',l:'TD',t:'text'},{k:'hr',l:'HR',t:'text'},{k:'spo2',l:'SpO2',t:'text'},{k:'suhu',l:'Suhu',t:'text'},{k:'catatan',l:'Catatan',t:'textarea'}]}]},
+user12:{name:'Humas',icon:'fa-bullhorn',staff:[{n:'LA ODE MASHURI',p:'Kepala Humas'},{n:'NESYA',p:'Staff Humas'},{n:'RAMONA ABD RAIS',p:'Staff Media'},{n:'YUYUN NURFANI N',p:'Staff Komunikasi'},{n:'NUR SYALWANA NINGRUM IBRAHIM',p:'Staff Informasi'}],tabs:[{id:'ulasan',title:'Kritik, Ulasan & Saran',icon:'fa-star-half-alt',fields:[{k:'nama',l:'Nama',t:'text'},{k:'email',l:'Email',t:'text'},{k:'kategori',l:'Kategori',t:'select',o:['Kritik','Ulasan','Saran','Pujian','Keluhan']},{k:'rating',l:'Rating',t:'text'},{k:'unit',l:'Unit',t:'text'},{k:'pesan',l:'Pesan',t:'textarea'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'status',l:'Status',t:'select',o:['Baru','Dibaca','Direspon','Ditutup']},{k:'tanggapan',l:'Tanggapan',t:'textarea'}]},{id:'livechat',title:'Live Chat',icon:'fa-comments',custom:true},{id:'pengumuman',title:'Pengumuman',icon:'fa-bell',fields:[{k:'judul',l:'Judul',t:'text'},{k:'isi',l:'Isi',t:'textarea'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'kategori',l:'Kategori',t:'select',o:['Informasi','Peringatan','Jadwal','Lainnya']},{k:'status',l:'Status',t:'select',o:['Aktif','Nonaktif']}]}]},
+user13:{name:'Pendaftaran',icon:'fa-clipboard-list',staff:[{n:'FITRIANI RAHMAWATI',p:'Kepala Pendaftaran'},{n:'DEWI SARTIKA',p:'Staff Pendaftaran'},{n:'AHMAD FAUZI',p:'Staff Pendaftaran'},{n:'SITI RAHMA',p:'Staff Pendaftaran'},{n:'PUTRI ANANDA',p:'Staff Rekam Medis'}],tabs:[{id:'pendaftaran',title:'Pendaftaran',icon:'fa-user-plus',fields:[{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama Pasien',t:'text'},{k:'nik',l:'NIK',t:'text'},{k:'tglLahir',l:'Tgl Lahir',t:'date'},{k:'jenisKelamin',l:'JK',t:'select',o:['Laki-laki','Perempuan']},{k:'alamat',l:'Alamat',t:'textarea'},{k:'telepon',l:'Telepon',t:'text'},{k:'pembayaran',l:'Pembayaran',t:'select',o:['Mandiri','Asuransi','BPJS']},{k:'poli',l:'Poli',t:'text'},{k:'tanggal',l:'Tgl Daftar',t:'date'},{k:'status',l:'Status',t:'select',o:['Terdaftar','Dilayani','Selesai','Dibatalkan']}]},{id:'rekamMedis',title:'Rekam Medis',icon:'fa-file-medical',fields:[{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'dokter',l:'Dokter',t:'text'},{k:'diagnosis',l:'Diagnosis',t:'text'},{k:'tindakan',l:'Tindakan',t:'text'},{k:'resep',l:'Resep Obat',t:'textarea'},{k:'catatan',l:'Catatan',t:'textarea'}]},{id:'farmasi',title:'Farmasi',icon:'fa-pills',fields:[{k:'noResep',l:'No. Resep',t:'text'},{k:'noRM',l:'No. RM',t:'text'},{k:'nama',l:'Nama',t:'text'},{k:'tanggal',l:'Tanggal',t:'date'},{k:'dokter',l:'Dokter',t:'text'},{k:'obat',l:'Daftar Obat',t:'textarea'},{k:'dosis',l:'Dosis',t:'textarea'},{k:'status',l:'Status',t:'select',o:['Menunggu','Diproses','Selesai','Dibatalkan']}]}]}
+};
+
+const SVC=[{icon:'fa-procedures',bg:'bg-teal-50',ic:'text-teal-600',h:'Rawat Inap',d:'Kamar nyaman 24 jam'},{icon:'fa-flask',bg:'bg-amber-50',ic:'text-amber-600',h:'Laboratorium',d:'Pemeriksaan akurat'},{icon:'fa-heartbeat',bg:'bg-rose-50',ic:'text-rose-600',h:'Bedah Sentral',d:'Teknologi modern'},{icon:'fa-baby',bg:'bg-blue-50',ic:'text-blue-600',h:'PICU',d:'Intensif anak'},{icon:'fa-pills',bg:'bg-purple-50',ic:'text-purple-600',h:'Farmasi',d:'Obat lengkap'},{icon:'fa-x-ray',bg:'bg-cyan-50',ic:'text-cyan-600',h:'Radiologi',d:'Pencitraan medis'},{icon:'fa-shield-alt',bg:'bg-green-50',ic:'text-green-600',h:'CSSD',d:'Sterilisasi'},{icon:'fa-bullhorn',bg:'bg-orange-50',ic:'text-orange-600',h:'Humas',d:'Informasi'}];
+const DAYS=['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
+
+/* ============================
+   STATE & DATA
+   ============================ */
+let CU=null,CT=null,selRat=0,jdSelectedDay=null;
+function gd(k){try{return JSON.parse(localStorage.getItem('lh_'+k))||[]}catch(e){return[]}}
+function sd(k,d){localStorage.setItem('lh_'+k,JSON.stringify(d))}
+function gid(a){return a.length?Math.max(...a.map(i=>i.id))+1:1}
+function formatRp(n){return'Rp '+Number(n).toLocaleString('id-ID')}
+function getCredentials(){const c=gd('credentials');if(!c.length){const d=[];for(let i=1;i<=13;i++)d.push({id:i,username:'user'+i,password:'123456',unit:UC['user'+i].name,displayName:UC['user'+i].staff[0].n});sd('credentials',d);return d}return c}
+function updCredential(uid,f,v){const c=getCredentials();const cr=c.find(x=>x.id===uid);if(cr){cr[f]=v;sd('credentials',c)}return cr}
+function getHospitalMetrics(){const p=gd('pendaftaran'),t=gd('tagihan'),f=gd('farmasi'),k=gd('kamar'),l=gd('permLab'),r=gd('radiologi'),o=gd('jadwalOp'),pg=gd('pegawai');return{totalPasien:p.length,pasienAktif:p.filter(x=>x.status==='Terdaftar'||x.status==='Dilayani').length,totalTagihan:t.reduce((s,x)=>s+(parseInt(x.total)||0),0),lunas:t.filter(x=>x.status==='Lunas').reduce((s,x)=>s+(parseInt(x.total)||0),0),belumBayar:t.filter(x=>x.status==='Belum Bayar').reduce((s,x)=>s+(parseInt(x.total)||0),0),totalResep:f.length,obatProses:f.filter(x=>x.status==='Menunggu'||x.status==='Diproses').length,totalTT:k.reduce((s,x)=>s+(parseInt(x.kapasitas)||0),0),terisiTT:k.reduce((s,x)=>s+(parseInt(x.terisi)||0),0),labTotal:l.length,labProses:l.filter(x=>x.status==='Proses').length,radTotal:r.length,radProses:r.filter(x=>x.status==='Proses').length,opDijadwalkan:o.filter(x=>x.status==='Dijadwalkan').length,pegAktif:pg.filter(x=>x.status==='Aktif').length}}
+
+function initData(){
+  if(localStorage.getItem('lh_init5'))return;localStorage.setItem('lh_init5','1');
+  // Jadwal Dokter — data sampel lengkap
+  sd('jadwalDokter',[
+    {id:1,namaDokter:'dr. Hadi Susanto, Sp.PD',spesialis:'Sp.PD (Penyakit Dalam)',poli:'Poliklinik Penyakit Dalam',hari:'Senin',jamMulai:'08:00',jamSelesai:'12:00',kuota:30,status:'Aktif'},
+    {id:2,namaDokter:'dr. Hadi Susanto, Sp.PD',spesialis:'Sp.PD (Penyakit Dalam)',poli:'Poliklinik Penyakit Dalam',hari:'Rabu',jamMulai:'08:00',jamSelesai:'12:00',kuota:30,status:'Aktif'},
+    {id:3,namaDokter:'dr. Hadi Susanto, Sp.PD',spesialis:'Sp.PD (Penyakit Dalam)',poli:'Poliklinik Penyakit Dalam',hari:'Jumat',jamMulai:'13:00',jamSelesai:'16:00',kuota:25,status:'Aktif'},
+    {id:4,namaDokter:'dr. Rina Agustina, Sp.PD',spesialis:'Sp.PD (Penyakit Dalam)',poli:'Poliklinik Penyakit Dalam',hari:'Selasa',jamMulai:'08:00',jamSelesai:'12:00',kuota:30,status:'Aktif'},
+    {id:5,namaDokter:'dr. Rina Agustina, Sp.PD',spesialis:'Sp.PD (Penyakit Dalam)',poli:'Poliklinik Penyakit Dalam',hari:'Kamis',jamMulai:'08:00',jamSelesai:'12:00',kuota:30,status:'Aktif'},
+    {id:6,namaDokter:'dr. Andi Pratama, Sp.B',spesialis:'Sp.B (Bedah)',poli:'Poliklinik Bedah',hari:'Senin',jamMulai:'13:00',jamSelesai:'16:00',kuota:20,status:'Aktif'},
+    {id:7,namaDokter:'dr. Andi Pratama, Sp.B',spesialis:'Sp.B (Bedah)',poli:'Poliklinik Bedah',hari:'Kamis',jamMulai:'08:00',jamSelesai:'12:00',kuota:20,status:'Aktif'},
+    {id:8,namaDokter:'dr. Siti Nurhaliza, Sp.OG',spesialis:'Sp.OG (Obstetri & Ginekologi)',poli:'Poliklinik Obstetri & Ginekologi',hari:'Selasa',jamMulai:'08:00',jamSelesai:'12:00',kuota:25,status:'Aktif'},
+    {id:9,namaDokter:'dr. Siti Nurhaliza, Sp.OG',spesialis:'Sp.OG (Obstetri & Ginekologi)',poli:'Poliklinik Obstetri & Ginekologi',hari:'Sabtu',jamMulai:'08:00',jamSelesai:'11:00',kuota:15,status:'Aktif'},
+    {id:10,namaDokter:'dr. Sari Dewi, Sp.A',spesialis:'Sp.A (Anak)',poli:'Poliklinik Anak',hari:'Senin',jamMulai:'08:00',jamSelesai:'12:00',kuota:35,status:'Aktif'},
+    {id:11,namaDokter:'dr. Sari Dewi, Sp.A',spesialis:'Sp.A (Anak)',poli:'Poliklinik Anak',hari:'Rabu',jamMulai:'13:00',jamSelesai:'16:00',kuota:30,status:'Aktif'},
+    {id:12,namaDokter:'dr. Sari Dewi, Sp.A',spesialis:'Sp.A (Anak)',poli:'Poliklinik Anak',hari:'Jumat',jamMulai:'08:00',jamSelesai:'12:00',kuota:35,status:'Aktif'},
+    {id:13,namaDokter:'dr. Faisal Akbar, Sp.JP',spesialis:'Sp.JP (Jantung & Pembuluh Darah)',poli:'Poliklinik Jantung',hari:'Selasa',jamMulai:'13:00',jamSelesai:'16:00',kuota:15,status:'Aktif'},
+    {id:14,namaDokter:'dr. Faisal Akbar, Sp.JP',spesialis:'Sp.JP (Jantung & Pembuluh Darah)',poli:'Poliklinik Jantung',hari:'Kamis',jamMulai:'13:00',jamSelesai:'16:00',kuota:15,status:'Aktif'},
+    {id:15,namaDokter:'dr. Wahyudi, Sp.S',spesialis:'Sp.S (Saraf)',poli:'Poliklinik Saraf',hari:'Rabu',jamMulai:'08:00',jamSelesai:'12:00',kuota:20,status:'Aktif'},
+    {id:16,namaDokter:'dr. Nur Aisyah, Sp.THT',spesialis:'Sp.THT (THT-KL)',poli:'Poliklinik THT',hari:'Senin',jamMulai:'13:00',jamSelesai:'16:00',kuota:20,status:'Aktif'},
+    {id:17,namaDokter:'dr. Nur Aisyah, Sp.THT',spesialis:'Sp.THT (THT-KL)',poli:'Poliklinik THT',hari:'Jumat',jamMulai:'08:00',jamSelesai:'12:00',kuota:20,status:'Aktif'},
+    {id:18,namaDokter:'dr. Muh. Rizal, Sp.M',spesialis:'Sp.M (Mata)',poli:'Poliklinik Mata',hari:'Selasa',jamMulai:'08:00',jamSelesai:'12:00',kuota:25,status:'Aktif'},
+    {id:19,namaDokter:'dr. Muh. Rizal, Sp.M',spesialis:'Sp.M (Mata)',poli:'Poliklinik Mata',hari:'Sabtu',jamMulai:'08:00',jamSelesai:'11:00',kuota:15,status:'Aktif'},
+    {id:20,namaDokter:'dr. Ilham Saputra, Sp.OT',spesialis:'Sp.OT (Orthopedi & Traumatologi)',poli:'Poliklinik Orthopedi',hari:'Kamis',jamMulai:'13:00',jamSelesai:'16:00',kuota:15,status:'Aktif'},
+    {id:21,namaDokter:'dr. Fatimah Zahra',spesialis:'Dokter Umum',poli:'Poliklinik Umum',hari:'Senin',jamMulai:'08:00',jamSelesai:'16:00',kuota:50,status:'Aktif'},
+    {id:22,namaDokter:'dr. Fatimah Zahra',spesialis:'Dokter Umum',poli:'Poliklinik Umum',hari:'Selasa',jamMulai:'08:00',jamSelesai:'16:00',kuota:50,status:'Aktif'},
+    {id:23,namaDokter:'dr. Fatimah Zahra',spesialis:'Dokter Umum',poli:'Poliklinik Umum',hari:'Rabu',jamMulai:'08:00',jamSelesai:'16:00',kuota:50,status:'Aktif'},
+    {id:24,namaDokter:'dr. Fatimah Zahra',spesialis:'Dokter Umum',poli:'Poliklinik Umum',hari:'Kamis',jamMulai:'08:00',jamSelesai:'16:00',kuota:50,status:'Aktif'},
+    {id:25,namaDokter:'dr. Fatimah Zahra',spesialis:'Dokter Umum',poli:'Poliklinik Umum',hari:'Jumat',jamMulai:'08:00',jamSelesai:'16:00',kuota:50,status:'Aktif'},
+    {id:26,namaDokter:'dr. Ahmad Fauzan',spesialis:'Dokter Umum',poli:'Poliklinik Umum',hari:'Sabtu',jamMulai:'08:00',jamSelesai:'13:00',kuota:30,status:'Aktif'},
+    {id:27,namaDokter:'dr. Ahmad Fauzan',spesialis:'Dokter Umum',poli:'Poliklinik Umum',hari:'Minggu',jamMulai:'09:00',jamSelesai:'13:00',kuota:20,status:'Aktif'},
+    {id:28,namaDokter:'dr. Dewi Safitri, Sp.KK',spesialis:'Sp.KK (Kulit & Kelamin)',poli:'Poliklinik Umum',hari:'Jumat',jamMulai:'13:00',jamSelesai:'16:00',kuota:20,status:'Aktif'}
+  ]);
+  sd('reg_online',[{id:1,nama:'Ahmad Fadli',nik:'7371001234560001',dob:'1990-05-15',gender:'Laki-laki',phone:'081234567890',address:'Jl. Somba Opu No.10',payment:'bpjs',poli:'Poliklinik Umum',complaint:'Demam tinggi 3 hari',bpjsNo:'0001234567',faskes:'Puskesmas',date:'2025-01-15',status:'Terdaftar'}]);
+  sd('chats',[]);sd('ulasan',[{id:1,nama:'Hj. Rahmawati',email:'',kategori:'Ulasan',rating:'5',unit:'Rawat Inap',pesan:'Pelayanan sangat ramah dan profesional.',tanggal:'2025-01-12',status:'Direspon',tanggapan:'Terima kasih!'}]);
+  let emp=[];let eid=1;Object.keys(UC).forEach(u=>{UC[u].staff.forEach(s=>{emp.push({id:eid++,nama:s.n,nip:'NIP-'+String(eid).padStart(4,'0'),jabatan:s.p,unit:UC[u].name,status:'Aktif'})})});sd('pegawai',emp);
+  sd('presensi',[{id:1,nama:'MAHSA GALUH KIRANA R',unit:'Kepegawaian/SDM',tanggal:'2025-01-17',masuk:'07:45',keluar:'16:05',status:'Hadir'}]);
+  sd('kamar',[{id:1,noKamar:'V-101',kelas:'VIP',kapasitas:1,terisi:0,status:'Tersedia'},{id:2,noKamar:'V-102',kelas:'VIP',kapasitas:1,terisi:1,status:'Penuh'},{id:3,noKamar:'1-201',kelas:'Kelas 1',kapasitas:1,terisi:1,status:'Penuh'},{id:4,noKamar:'2-301',kelas:'Kelas 2',kapasitas:2,terisi:1,status:'Tersedia'},{id:5,noKamar:'3-401',kelas:'Kelas 3',kapasitas:4,terisi:3,status:'Tersedia'},{id:6,noKamar:'ICU-01',kelas:'ICU',kapasitas:1,terisi:1,status:'Penuh'}]);
+  sd('pasienRI',[{id:1,noRM:'RM-002',nama:'Siti Aisyah',diagnosis:'Angina pektoris',kamar:'V-102',tglMasuk:'2025-01-16',dokter:'dr. Rina Agustina',status:'Rawat Inap'}]);
+  sd('tagihan',[{id:1,noTagihan:'INV-001',noRM:'RM-001',nama:'Ahmad Fadli',tanggal:'2025-01-15',total:750000,metode:'BPJS',status:'Lunas'},{id:2,noTagihan:'INV-002',noRM:'RM-002',nama:'Siti Aisyah',tanggal:'2025-01-16',total:2500000,metode:'Asuransi',status:'Belum Bayar'}]);
+  sd('pembayaran',[{id:1,noKwitansi:'KW-001',noRM:'RM-001',nama:'Ahmad Fadli',tanggal:'2025-01-15',jumlah:750000,metode:'Tunai'}]);
+  sd('jadwalOp',[{id:1,noOP:'OP-001',nama:'Budi Santoso',noRM:'RM-003',tanggal:'2025-01-18',jam:'08:00',jenisOp:'Apendektomi',dokterOp:'dr. Andi Pratama, Sp.B',ruang:'OK-1',status:'Dijadwalkan'}]);
+  sd('tindakanBedah',[]);sd('permLab',[{id:1,noLab:'LAB-001',noRM:'RM-001',nama:'Ahmad Fadli',tanggal:'2025-01-15',jenisPemeriksaan:'Darah Lengkap',dokter:'dr. Hadi Susanto',status:'Selesai'}]);
+  sd('hasilLab',[{id:1,noLab:'LAB-001',noRM:'RM-001',nama:'Ahmad Fadli',parameter:'WBC',nilai:'12500',satuan:'/uL',normal:'4000-10000',keterangan:'Abnormal',tanggal:'2025-01-15'}]);
+  sd('radiologi',[{id:1,noRad:'RAD-001',noRM:'RM-002',nama:'Siti Aisyah',tanggal:'2025-01-16',jenisPemeriksaan:'Rontgen Thorax',dokter:'dr. Rina Agustina',hasil:'Cardiomegali',status:'Selesai'}]);
+  sd('linen',[{id:1,jenis:'Sprei',jumlah:250,kondisi:'Baik',lokasi:'Gudang Lt.1'}]);sd('permLaundry',[{id:1,unit:'Rawat Inap',tanggal:'2025-01-17',jenisLinen:'Sprei',jumlah:30,status:'Diproses'}]);
+  sd('kegiatan',[{id:1,namaKegiatan:'Senam Sehat',tanggal:'2025-02-01',lokasi:'Halaman RS',sasaran:'Masyarakat',penanggungJawab:'SYAHRINA',status:'Perencanaan'}]);
+  sd('publikasi',[{id:1,judul:'Tips Jantung Sehat',jenis:'Media Digital',tanggal:'2025-01-15',deskripsi:'Edukasi',status:'Terbit'}]);
+  sd('inventaris',[{id:1,kodeBarang:'ATK-001',namaBarang:'Kertas HVS A4',kategori:'ATK',stok:50,satuan:'Rim',lokasi:'Gudang A'}]);sd('permBarang',[{id:1,unit:'Rawat Inap',tanggal:'2025-01-17',namaBarang:'Kertas HVS A4',jumlah:5,status:'Disetujui'}]);
+  sd('sterilisasi',[{id:1,kodeAlat:'ST-001',namaAlat:'Set Bedah',jumlah:5,metode:'Autoclave',tanggal:'2025-01-17',status:'Selesai'}]);sd('inventarisAlat',[{id:1,kode:'INS-001',nama:'Pinset',jenis:'Instrumen Bedah',jumlah:15,kondisi:'Baik',lokasi:'Gudang CSSD'}]);
+  sd('jadwalCath',[{id:1,noProsedur:'CATH-001',nama:'Siti Aisyah',noRM:'RM-002',tanggal:'2025-01-20',jam:'10:00',jenisProsedur:'Kateterisasi',dokter:'dr. Faisal, Sp.JP',status:'Dijadwalkan'}]);sd('tindakanCath',[]);
+  sd('pasienPICU',[{id:1,noRM:'RM-004',nama:'An. Rizky',usia:'3 thn',diagnosis:'Pneumonia',tglMasuk:'2025-01-16',bed:'PICU-B1',dokter:'dr. Sari Dewi',status:'Dirawat'}]);sd('monitoring',[{id:1,noRM:'RM-004',nama:'An. Rizky',tanggal:'2025-01-17',jam:'08:00',td:'100/60',hr:'120',spo2:'94%',suhu:'38.5',catatan:'Demam'}]);
+  sd('pengumuman',[{id:1,judul:'Jadwal Dokter Baru',isi:'Februari 2025, dr. Andi Pratama di Poliklinik Bedah.',tanggal:'2025-01-10',kategori:'Informasi',status:'Aktif'}]);
+  sd('pendaftaran',[{id:1,noRM:'RM-001',nama:'Ahmad Fadli',nik:'7371001234560001',tglLahir:'1990-05-15',jenisKelamin:'Laki-laki',alamat:'Jl. Somba Opu No.10',telepon:'081234567890',pembayaran:'BPJS',poli:'Poliklinik Umum',tanggal:'2025-01-15',status:'Terdaftar'}]);
+  sd('rekamMedis',[{id:1,noRM:'RM-001',nama:'Ahmad Fadli',tanggal:'2025-01-15',dokter:'dr. Hadi Susanto',diagnosis:'Demam tifoid',tindakan:'Antibiotik IV',resep:'Ceftriaxon 1g/12h',catatan:'Observasi'}]);
+  sd('farmasi',[{id:1,noResep:'RSP-001',noRM:'RM-001',nama:'Ahmad Fadli',tanggal:'2025-01-15',dokter:'dr. Hadi Susanto',obat:'Ceftriaxon 1g',dosis:'1g/12h IV',status:'Selesai'}]);
+  getCredentials();
+}
+
+/* ============================
+   JADWAL DOKTER — HALAMAN PUBLIK
+   ============================ */
+function getTodayDayName(){
+  const d=new Date().getDay();return DAYS[d===0?6:d-1];
+}
+
+function isCurrentlyPracticing(jamMulai,jamSelesai){
+  const now=new Date();const h=String(now.getHours()).padStart(2,'0');const m=String(now.getMinutes()).padStart(2,'0');
+  const nowStr=h+':'+m;return nowStr>=jamMulai&&nowStr<=jamSelesai;
+}
+
+function renderJadwalDokterPublik(){
+  const schedule=gd('jadwalDokter').filter(s=>s.status==='Aktif');
+  const today=getTodayDayName();
+  if(!jdSelectedDay)jdSelectedDay=today;
+
+  // Update label hari & jam
+  const now=new Date();
+  const dayNames=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  document.getElementById('jd-today-label').textContent=dayNames[now.getDay()]+', '+now.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('jd-clock').textContent=now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' WITA';
+
+  // Render tab hari
+  let tabsH='';
+  DAYS.forEach(d=>{
+    const isToday=d===today;
+    const count=schedule.filter(s=>s.hari===d).length;
+    tabsH+='<button class="day-tab'+(jdSelectedDay===d?' on':'')+'" onclick="jdSelectDay(\''+d+'\')">';
+    if(isToday)tabsH+='<i class="fas fa-circle text-green-400 mr-1" style="font-size:6px;vertical-align:middle"></i>';
+    tabsH+=d.substring(0,3)+' <span class="text-xs opacity-70">('+count+')</span></button>';
+  });
+  document.getElementById('jd-day-tabs').innerHTML=tabsH;
+
+  // Render kartu dokter
+  const daySchedule=schedule.filter(s=>s.hari===jdSelectedDay);
+  const grid=document.getElementById('jd-schedule-grid');
+  const empty=document.getElementById('jd-empty');
+
+  if(!daySchedule.length){grid.innerHTML='';empty.classList.remove('hidden');return}
+  empty.classList.add('hidden');
+
+  // Kelompokkan per poli
+  const byPoli={};
+  daySchedule.forEach(s=>{
+    if(!byPoli[s.poli])byPoli[s.poli]=[];
+    byPoli[s.poli].push(s);
+  });
+
+  let h='';
+  Object.keys(byPoli).sort().forEach(poli=>{
+    h+='<div class="col-span-full"><div class="flex items-center gap-2 mb-2 mt-2"><i class="fas fa-hospital-alt text-teal-600"></i><span class="font-bold text-teal-800 text-sm">'+poli+'</span><span class="bg bgi">'+byPoli[poli].length+' dokter</span></div></div>';
+    byPoli[poli].forEach(s=>{
+      const onDuty=(jdSelectedDay===today)&&isCurrentlyPracticing(s.jamMulai,s.jamSelesai);
+      h+='<div class="doc-card'+(onDuty?' on-duty':'')+'">';
+      if(onDuty)h+='<div class="absolute top-3 right-3 flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-green-500 pulse-dot inline-block"></span><span class="text-xs font-bold text-green-700">Sedang Praktek</span></div>';
+      h+='<div class="flex items-start gap-3">';
+      h+='<div class="w-11 h-11 rounded-xl flex items-center justify-center text-lg '+(onDuty?'bg-green-100 text-green-700':'bg-teal-50 text-teal-700')+'"><i class="fas fa-user-md"></i></div>';
+      h+='<div class="flex-1 min-w-0">';
+      h+='<div class="font-bold text-sm text-gray-900 truncate">'+s.namaDokter+'</div>';
+      h+='<div class="text-xs text-teal-600 font-medium">'+s.spesialis+'</div>';
+      h+='<div class="flex items-center gap-3 mt-1.5 text-xs text-gray-500">';
+      h+='<span><i class="fas fa-clock mr-1"></i>'+s.jamMulai+' - '+s.jamSelesai+'</span>';
+      if(s.kuota)h+='<span><i class="fas fa-users mr-1"></i>Kuota: '+s.kuota+'</span>';
+      h+='</div></div></div></div>';
+    });
+  });
+  grid.innerHTML=h;
+}
+
+function jdSelectDay(d){jdSelectedDay=d;renderJadwalDokterPublik()}
+
+// Update jam real-time setiap detik
+function updateClock(){
+  const now=new Date();
+  const el=document.getElementById('jd-clock');
+  if(el)el.textContent=now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' WITA';
+}
+setInterval(updateClock,1000);
+// Refresh jadwal setiap 30 detik untuk update status "Sedang Praktek"
+setInterval(function(){if(document.getElementById('pg-pub').classList.contains('on'))renderJadwalDokterPublik()},30000);
+
+/* ============================
+   NAVIGASI
+   ============================ */
+function goPage(id){document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));document.getElementById(id).classList.add('on');document.getElementById('cw').style.display=(id==='pg-pub')?'block':'none';if(id==='pg-pub'){renderPubFeedback();renderJadwalDokterPublik()}}
+function selPay(t){document.querySelectorAll('.po').forEach(e=>e.classList.remove('sl'));document.querySelector('.po[data-py="'+t+'"]').classList.add('sl');document.getElementById('r-pay').value=t;document.getElementById('f-asr').style.display=(t==='asuransi')?'grid':'none';document.getElementById('f-bpjs').style.display=(t==='bpjs')?'grid':'none'}
+function submitReg(){const py=document.getElementById('r-pay').value,nm=document.getElementById('r-nm').value.trim(),nik=document.getElementById('r-nik').value.trim(),dob=document.getElementById('r-dob').value,gen=document.getElementById('r-gen').value,ph=document.getElementById('r-ph').value.trim(),pol=document.getElementById('r-pol').value,addr=document.getElementById('r-addr').value.trim(),comp=document.getElementById('r-comp').value.trim(),agree=document.getElementById('r-agree').checked;if(!py||!nm||!nik||!dob||!gen||!ph||!pol||!agree){showToast('Lengkapi semua data wajib','e');return}if(py==='asuransi'&&!document.getElementById('r-asr-nm').value){showToast('Lengkapi data asuransi','e');return}if(py==='bpjs'&&!document.getElementById('r-bpjs-no').value){showToast('Lengkapi data BPJS','e');return}const d=gd('reg_online');d.push({id:gid(d),nama:nm,nik:nik,dob:dob,gender:gen,phone:ph,address:addr,payment:py,poli:pol,complaint:comp,date:new Date().toISOString().split('T')[0],status:'Terdaftar'});sd('reg_online',d);const pd=gd('pendaftaran');const rmNo='RM-'+String(pd.length+1).padStart(3,'0');pd.push({id:gid(pd),noRM:rmNo,nama:nm,nik:nik,tglLahir:dob,jenisKelamin:gen,alamat:addr,telepon:ph,pembayaran:py==='asuransi'?'Asuransi':py==='bpjs'?'BPJS':'Mandiri',poli:pol,tanggal:new Date().toISOString().split('T')[0],status:'Terdaftar'});sd('pendaftaran',pd);showToast('Pendaftaran berhasil! No. RM: '+rmNo,'s');['r-nm','r-nik','r-dob','r-gen','r-ph','r-pol','r-addr','r-comp','r-asr-nm','r-asr-no','r-bpjs-no','r-faskes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});document.getElementById('r-agree').checked=false;document.querySelectorAll('.po').forEach(e=>e.classList.remove('sl'));document.getElementById('f-asr').style.display='none';document.getElementById('f-bpjs').style.display='none'}
+
+/* ============================
+   ULASAN PUBLIK
+   ============================ */
+document.addEventListener('DOMContentLoaded',function(){const stars=document.querySelectorAll('#fb-stars i');stars.forEach(s=>{s.addEventListener('click',function(){selRat=parseInt(this.getAttribute('data-v'));document.getElementById('fb-rating').value=selRat;stars.forEach((st,i)=>{st.classList.toggle('active',i<selRat)})});s.addEventListener('mouseenter',function(){const v=parseInt(this.getAttribute('data-v'));stars.forEach((st,i)=>{st.style.color=i<v?'#FBBF24':'#D1D5DB'})})});document.getElementById('fb-stars').addEventListener('mouseleave',function(){stars.forEach((st,i)=>{st.style.color=i<selRat?'#F59E0B':'#D1D5DB'})})});
+function submitFeedback(){const nm=document.getElementById('fb-nm').value.trim(),em=document.getElementById('fb-em').value.trim(),kat=document.getElementById('fb-kat').value,rt=document.getElementById('fb-rating').value,unit=document.getElementById('fb-unit').value,msg=document.getElementById('fb-msg').value.trim();if(!nm||!kat||!rt||rt==='0'||!msg){showToast('Lengkapi semua data wajib','e');return}const data=gd('ulasan');data.push({id:gid(data),nama:nm,email:em,kategori:kat,rating:rt,unit:unit||'-',pesan:msg,tanggal:new Date().toISOString().split('T')[0],status:'Baru',tanggapan:''});sd('ulasan',data);showToast('Ulasan berhasil dikirim!','s');document.getElementById('fb-nm').value='';document.getElementById('fb-em').value='';document.getElementById('fb-kat').value='';document.getElementById('fb-unit').value='';document.getElementById('fb-msg').value='';selRat=0;document.getElementById('fb-rating').value='0';document.querySelectorAll('#fb-stars i').forEach(s=>{s.classList.remove('active');s.style.color='#D1D5DB'});renderPubFeedback()}
+function renderPubFeedback(){const data=gd('ulasan');const el=document.getElementById('fb-list');const avgEl=document.getElementById('fb-avg');if(!data.length){el.innerHTML='<div class="text-center text-gray-400 py-8">Belum ada ulasan</div>';avgEl.innerHTML='';return}const avg=(data.reduce((s,r)=>s+parseInt(r.rating||0),0)/data.length).toFixed(1);avgEl.innerHTML='<span class="font-bold text-amber-600"><i class="fas fa-star text-amber-500"></i> '+avg+'</span> <span class="text-gray-400">('+data.length+')</span>';let h='';[...data].reverse().forEach(r=>{const kc=r.kategori==='Kritik'?'bgd':r.kategori==='Saran'?'bgi':r.kategori==='Pujian'?'bgs':r.kategori==='Keluhan'?'bgp':'bgw';const st=Array.from({length:5},(_,i)=>'<i class="fas fa-star" style="color:'+(i<parseInt(r.rating)?'#F59E0B':'#D1D5DB')+';font-size:11px"></i>').join('');h+='<div class="cd p-4"><div class="flex items-start justify-between mb-1"><div><span class="font-semibold text-sm text-teal-900">'+r.nama+'</span> <span class="bg '+kc+'">'+r.kategori+'</span></div><div class="text-xs text-gray-400">'+r.tanggal+'</div></div><div class="mb-1">'+st+'</div>';if(r.unit&&r.unit!=='-')h+='<div class="text-xs text-gray-500 mb-1"><i class="fas fa-hospital mr-1"></i>'+r.unit+'</div>';h+='<p class="text-xs text-gray-700 mb-2">'+r.pesan+'</p>';if(r.tanggapan)h+='<div class="bg-teal-50 border border-teal-200 rounded p-2"><div class="text-xs font-semibold text-teal-700 mb-0.5"><i class="fas fa-reply mr-1"></i>Tanggapan:</div><p class="text-xs text-teal-800">'+r.tanggapan+'</p></div>';h+='</div>'});el.innerHTML=h}
+
+/* ============================
+   LOGIN & DASHBOARD
+   ============================ */
+function doLogin(){const u=document.getElementById('l-user').value.trim().toLowerCase(),p=document.getElementById('l-pass').value;const er=document.getElementById('l-err');if(!UC[u]){er.textContent='Username tidak ditemukan (user1-13)';er.style.display='block';return}const creds=getCredentials();const uid=parseInt(u.replace('user',''));const cr=creds.find(c=>c.id===uid);if(p!==(cr?cr.password:'123456')){er.textContent='Password salah!';er.style.display='block';return}er.style.display='none';CU=u;goPage('pg-admin');initDash()}
+function doLogout(){CU=null;CT=null;document.getElementById('l-user').value='';document.getElementById('l-pass').value='';goPage('pg-pub')}
+
+function initDash(){const cfg=UC[CU];document.getElementById('sb-unit').textContent=cfg.name;document.getElementById('sb-name').textContent=cfg.staff[0].n;document.getElementById('sb-role').textContent=cfg.staff[0].p;document.getElementById('hd-user').textContent=cfg.staff[0].n+' — '+cfg.name;let h='<div class="ni on" onclick="swTab(\'overview\')"><i class="fas fa-th-large w-5 text-center"></i> Dashboard RS</div>';cfg.tabs.forEach(t=>{h+='<div class="ni" onclick="swTab(\''+t.id+'\')"><i class="fas '+t.icon+' w-5 text-center"></i> '+t.title+'</div>'});document.getElementById('sb-nav').innerHTML=h;document.getElementById('sbar').classList.remove('off');document.getElementById('marea').classList.remove('wd');swTab('overview')}
+
+function swTab(tid){CT=tid;const cfg=UC[CU];const navs=document.querySelectorAll('.ni');navs.forEach(n=>n.classList.remove('on'));if(tid==='overview'){navs[0]?.classList.add('on')}else{const idx=cfg.tabs.findIndex(t=>t.id===tid);if(idx>=0&&navs[idx+1])navs[idx+1].classList.add('on')}document.getElementById('pg-title').textContent=tid==='overview'?'Dashboard Rumah Sakit':(cfg.tabs.find(t=>t.id===tid)?.title||'Dashboard');if(tid==='overview')renderOverview();else if(tid==='livechat')renderChatAdmin();else if(tid==='pengaturanAkun')renderPengaturanAkun();else if(tid==='ulasan'&&CU==='user12')renderUlasanAdmin(gd('ulasan'));else renderTable(tid)}
+
+function renderOverview(){const cfg=UC[CU];const m=getHospitalMetrics();let h='<div class="mb-5"><h2 class="text-xl font-bold text-teal-900 mb-1">Dashboard Rumah Sakit</h2><p class="text-gray-500 text-sm">'+cfg.name+'</p></div>';h+='<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">';h+=dm2('fa-users','bg-teal-100','text-teal-700',m.totalPasien,'Total Pasien','');h+=dm2('fa-user-check','bg-green-100','text-green-700',m.pasienAktif,'Pasien Aktif','');h+=dm2('fa-bed','bg-blue-100','text-blue-700',m.terisiTT+'/'+m.totalTT,'TT Terisi','');h+=dm2('fa-door-open','bg-cyan-100','text-cyan-700',m.totalTT-m.terisiTT,'TT Tersedia','');h+='</div>';h+='<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">';h+=dm2('fa-file-invoice-dollar','bg-amber-100','text-amber-700',formatRp(m.totalTagihan),'Total Tagihan','');h+=dm2('fa-check-circle','bg-green-100','text-green-700',formatRp(m.lunas),'Lunas','');h+=dm2('fa-flask','bg-purple-100','text-purple-700',m.labTotal+' (Proses: '+m.labProses+')','Pemeriksaan Lab','');h+=dm2('fa-x-ray','bg-indigo-100','text-indigo-700',m.radTotal+' (Proses: '+m.radProses+')','Radiologi','');h+='</div>';h+='<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">';h+=dm2('fa-pills','bg-pink-100','text-pink-700',m.totalResep,'Resep Farmasi','Proses: '+m.obatProses);h+=dm2('fa-syringe','bg-orange-100','text-orange-700',m.opDijadwalkan,'Jadwal Operasi','');h+=dm2('fa-user-md','bg-teal-100','text-teal-700',m.pegAktif,'Pegawai Aktif','');h+=dm2('fa-calendar-check','bg-amber-100','text-amber-700',gd('jadwalDokter').filter(x=>x.status==='Aktif').length,'Jadwal Dokter','Aktif');h+='</div>';
+  // Ketersediaan kamar
+  const kmr=gd('kamar');h+='<div class="cd p-4 mb-4"><h3 class="font-semibold text-sm text-teal-800 mb-3"><i class="fas fa-bed mr-2"></i>Ketersediaan Kamar</h3><div class="grid grid-cols-2 md:grid-cols-3 gap-3">';kmr.forEach(k=>{const pct=k.kapasitas>0?Math.round((parseInt(k.terisi)/parseInt(k.kapasitas))*100):0;const bc=pct>=100?'bg-red-500':pct>=75?'bg-amber-500':'bg-green-500';h+='<div class="bg-gray-50 rounded-lg p-3 border"><div class="flex justify-between items-center mb-1"><span class="font-semibold text-xs">'+k.noKamar+'</span><span class="bg '+(k.status==='Penuh'?'bgd':'bgs')+'">'+k.status+'</span></div><div class="text-xs text-gray-500 mb-1">'+k.kelas+'</div><div class="w-full bg-gray-200 rounded-full h-2 mb-1"><div class="'+bc+' h-2 rounded-full" style="width:'+pct+'%"></div></div><div class="text-xs text-gray-500">'+k.terisi+'/'+k.kapasitas+'</div></div>'});h+='</div></div>';
+  // Pegawai unit
+  h+='<div class="cd p-4"><h3 class="font-semibold text-sm text-teal-800 mb-3"><i class="fas fa-users mr-2"></i>Pegawai '+cfg.name+'</h3><div class="overflow-x-auto"><table><thead><tr><th>No</th><th>Nama</th><th>Jabatan</th></tr></thead><tbody>';cfg.staff.forEach((s,i)=>{h+='<tr><td>'+(i+1)+'</td><td class="font-medium">'+s.n+'</td><td><span class="bg bgi">'+s.p+'</span></td></tr>'});h+='</tbody></table></div></div>';document.getElementById('dash-ct').innerHTML=h}
+function dm2(icon,bg,clr,val,title,sub){return'<div class="dm"><div class="flex items-start gap-3"><div class="di '+bg+' '+clr+'"><i class="fas '+icon+'"></i></div><div><div class="text-lg font-bold text-gray-900">'+val+'</div><div class="text-xs font-semibold text-gray-700">'+title+'</div><div class="text-xs text-gray-400">'+sub+'</div></div></div></div>'}
+
+/* ============================
+   PENGATURAN AKUN
+   ============================ */
+function renderPengaturanAkun(){const creds=getCredentials();const uid=parseInt(CU.replace('user',''));const isSDM=(CU==='user1');let h='<div class="mb-4"><h3 class="font-bold text-teal-900 text-lg"><i class="fas fa-user-cog mr-2"></i>Pengaturan Akun</h3></div>';if(isSDM){h+='<div class="cd p-5 mb-4"><h4 class="font-semibold text-sm mb-3">Semua Akun Unit</h4><div class="overflow-x-auto"><table><thead><tr><th>Unit</th><th>Username</th><th>Nama</th><th>Password</th><th>Aksi</th></tr></thead><tbody>';creds.forEach(cr=>{h+='<tr><td class="text-xs font-medium">'+cr.unit+'</td><td><input id="un-'+cr.id+'" value="'+cr.username+'" class="text-xs" style="padding:4px 8px;width:90px"></td><td><input id="dn-'+cr.id+'" value="'+cr.displayName+'" class="text-xs" style="padding:4px 8px;width:150px"></td><td><input id="pw-'+cr.id+'" type="password" value="'+cr.password+'" class="text-xs" style="padding:4px 8px;width:90px"></td><td><button onclick="saveAkun('+cr.id+')" class="bt bp bsm"><i class="fas fa-save"></i></button></td></tr>'});h+='</tbody></table></div></div>'}else{const cr=creds.find(c=>c.id===uid);if(cr){h+='<div class="cd p-5 max-w-md"><h4 class="font-semibold text-sm mb-4">Ubah Akun Anda</h4><div class="mb-3"><label class="block text-xs font-semibold mb-1">Username</label><input id="un-'+uid+'" value="'+cr.username+'"></div><div class="mb-3"><label class="block text-xs font-semibold mb-1">Nama</label><input id="dn-'+uid+'" value="'+cr.displayName+'"></div><div class="mb-3"><label class="block text-xs font-semibold mb-1">Password Baru</label><input id="pw-'+uid+'" type="password" value="'+cr.password+'"></div><div class="mb-3"><label class="block text-xs font-semibold mb-1">Konfirmasi</label><input id="pw2-'+uid+'" type="password" value="'+cr.password+'"></div><button onclick="saveAkun('+uid+')" class="bt bp"><i class="fas fa-save"></i> Simpan</button></div>'}}document.getElementById('dash-ct').innerHTML=h}
+function saveAkun(uid){const un=document.getElementById('un-'+uid).value.trim(),dn=document.getElementById('dn-'+uid).value.trim(),pw=document.getElementById('pw-'+uid).value,pw2=document.getElementById('pw2-'+uid);if(!un||!dn||!pw){showToast('Wajib diisi semua','e');return}if(pw2&&pw!==pw2.value){showToast('Konfirmasi password tidak cocok','e');return}if(pw.length<4){showToast('Password min 4 karakter','e');return}updCredential(uid,'username',un);updCredential(uid,'displayName',dn);updCredential(uid,'password',pw);showToast('Akun berhasil diperbarui','s');if(uid===parseInt(CU.replace('user',''))){const c=getCredentials();const cr=c.find(x=>x.id===uid);if(cr){document.getElementById('sb-name').textContent=cr.displayName;document.getElementById('hd-user').textContent=cr.displayName+' — '+UC[CU].name}}}
+
+/* ============================
+   ULASAN ADMIN
+   ============================ */
+function renderUlasanAdmin(data){let h='<div class="flex gap-2 mb-4 np"><button onclick="openAdd(\'ulasan\')" class="bt bp bsm"><i class="fas fa-plus"></i> Tambah</button><button onclick="printTbl(\'ulasan\')" class="bt bo bsm"><i class="fas fa-print"></i> Cetak</button><button onclick="expCSV(\'ulasan\')" class="bt ba bsm"><i class="fas fa-file-export"></i> Export</button></div>';h+='<div class="grid grid-cols-4 gap-2 mb-4"><div class="cd p-2 text-center"><div class="text-lg font-bold">'+data.length+'</div><div class="text-xs text-gray-500">Total</div></div><div class="cd p-2 text-center border-l-4 border-l-red-400"><div class="text-lg font-bold text-red-600">'+data.filter(r=>r.status==='Baru').length+'</div><div class="text-xs">Baru</div></div><div class="cd p-2 text-center border-l-4 border-l-green-400"><div class="text-lg font-bold text-green-600">'+data.filter(r=>r.status==='Direspon').length+'</div><div class="text-xs">Direspon</div></div><div class="cd p-2 text-center border-l-4 border-l-gray-400"><div class="text-lg font-bold text-gray-600">'+data.filter(r=>r.status==='Ditutup').length+'</div><div class="text-xs">Ditutup</div></div></div>';h+='<div class="space-y-3">';if(!data.length)h+='<div class="text-center text-gray-400 py-8">Belum ada ulasan</div>';else{[...data].reverse().forEach(r=>{const kc=r.kategori==='Kritik'?'bgd':r.kategori==='Saran'?'bgi':r.kategori==='Pujian'?'bgs':r.kategori==='Keluhan'?'bgp':'bgw';const sc=r.status==='Baru'?'bgd':r.status==='Direspon'?'bgs':'bgw';h+='<div class="cd p-4"><div class="flex flex-wrap items-center justify-between gap-2 mb-2"><div><span class="font-bold text-sm">'+r.nama+'</span> <span class="bg '+kc+'">'+r.kategori+'</span> <span class="bg '+sc+'">'+r.status+'</span></div><div class="text-xs text-gray-400">'+r.tanggal+'</div></div><p class="text-xs bg-gray-50 rounded p-2 mb-2">'+r.pesan+'</p>';if(r.tanggapan)h+='<div class="bg-teal-50 border border-teal-200 rounded p-2 mb-2"><div class="text-xs font-semibold text-teal-700">Tanggapan:</div><p class="text-xs">'+r.tanggapan+'</p></div>';h+='<div class="flex gap-2 np">';if(r.status==='Baru')h+='<button onclick="chgUls('+r.id+',\'Dibaca\')" class="bt bsm bo">Dibaca</button>';h+='<button onclick="openTanggapi('+r.id+')" class="bt bsm bp"><i class="fas fa-reply"></i> Tanggapi</button><button onclick="delRow(\'ulasan\','+r.id+')" class="bt bsm bdd"><i class="fas fa-trash"></i></button></div></div>'})}h+='</div>';document.getElementById('dash-ct').innerHTML=h}
+function chgUls(id,st){const d=gd('ulasan');const r=d.find(x=>x.id===id);if(r){r.status=st;sd('ulasan',d);swTab('ulasan');showToast('Status diubah','s')}}
+function openTanggapi(id){const d=gd('ulasan');const r=d.find(x=>x.id===id);if(!r)return;let h='<div class="p-5"><h3 class="font-bold text-teal-900 mb-2">Tanggapi Ulasan</h3><div class="bg-gray-50 rounded p-3 mb-3 text-sm"><strong>'+r.nama+'</strong>: '+r.pesan+'</div><div class="mb-3"><label class="block text-xs font-semibold mb-1">Tanggapan</label><textarea id="tg-inp" rows="3">'+(r.tanggapan||'')+'</textarea></div><div class="mb-3"><label class="block text-xs font-semibold mb-1">Status</label><select id="tg-st">';['Baru','Dibaca','Direspon','Ditutup'].forEach(o=>{h+='<option value="'+o+'"'+(r.status===o?' selected':'')+'>'+o+'</option>'});h+='</select></div><div class="flex justify-end gap-2"><button onclick="clModal()" class="bt bo">Batal</button><button onclick="saveTg('+id+')" class="bt bp">Simpan</button></div></div>';document.getElementById('mo-ct').innerHTML=h;document.getElementById('mo-ov').classList.add('on')}
+function saveTg(id){const d=gd('ulasan');const r=d.find(x=>x.id===id);if(!r)return;r.tanggapan=document.getElementById('tg-inp').value.trim();r.status=document.getElementById('tg-st').value;sd('ulasan',d);clModal();showToast('Tersimpan','s');swTab('ulasan')}
+
+/* ============================
+   TABEL + CRUD
+   ============================ */
+function renderTable(tid){const tab=UC[CU].tabs.find(t=>t.id===tid);if(!tab)return;const data=gd(tid);let h='<div class="flex flex-wrap items-center justify-between gap-2 mb-4 np"><div><button onclick="openAdd(\''+tid+'\')" class="bt bp bsm"><i class="fas fa-plus"></i> Tambah</button></div><div class="flex gap-2"><button onclick="printTbl(\''+tid+'\')" class="bt bo bsm"><i class="fas fa-print"></i> Cetak</button><button onclick="expCSV(\''+tid+'\')" class="bt ba bsm"><i class="fas fa-file-export"></i> Export</button></div></div>';h+='<div class="cd"><div class="overflow-x-auto"><table><thead><tr><th>No</th>';tab.fields.forEach(f=>{h+='<th>'+f.l+'</th>'});h+='<th class="np">Aksi</th></tr></thead><tbody>';if(!data.length){h+='<tr><td colspan="'+(tab.fields.length+2)+'" class="text-center text-gray-400 py-8">Belum ada data</td></tr>'}else{data.forEach((row,i)=>{h+='<tr><td>'+(i+1)+'</td>';tab.fields.forEach(f=>{let v=row[f.k]||'-';if(f.t==='select'&&v!=='-'){const c=v==='Selesai'||v==='Lunas'||v==='Aktif'||v==='Hadir'||v==='Tersedia'||v==='Baik'||v==='Terbit'||v==='Direspon'||v==='Distribusi'?'bgs':v==='Dibatalkan'||v==='Alpha'||v==='Rusak'||v==='Nonaktif'||v==='Ditutup'?'bgd':'bgw';v='<span class="bg '+c+'">'+v+'</span>'}h+='<td>'+v+'</td>'});h+='<td class="np"><button onclick="openEdit(\''+tid+'\','+row.id+')" class="bt bo bsm"><i class="fas fa-edit"></i></button> <button onclick="delRow(\''+tid+'\','+row.id+')" class="bt bdd bsm"><i class="fas fa-trash"></i></button></td></tr>'})}h+='</tbody></table></div></div>';document.getElementById('dash-ct').innerHTML=h}
+function openAdd(tid){const tab=UC[CU].tabs.find(t=>t.id===tid);let h='<div class="p-5"><h3 class="font-bold text-teal-900 mb-3"><i class="fas fa-plus-circle mr-2 text-teal-600"></i>Tambah '+tab.title+'</h3><form id="cf">';tab.fields.forEach(f=>{h+='<div class="mb-2"><label class="block text-xs font-semibold mb-1">'+f.l+'</label>';if(f.t==='select'){h+='<select name="'+f.k+'"><option value="">Pilih</option>';f.o.forEach(o=>{h+='<option value="'+o+'">'+o+'</option>'});h+='</select>'}else if(f.t==='textarea'){h+='<textarea name="'+f.k+'" rows="2"></textarea>'}else{h+='<input type="'+f.t+'" name="'+f.k+'">'}h+='</div>'});h+='<div class="flex justify-end gap-2 mt-3"><button type="button" onclick="clModal()" class="bt bo">Batal</button><button type="submit" class="bt bp">Simpan</button></div></form></div>';document.getElementById('mo-ct').innerHTML=h;document.getElementById('mo-ov').classList.add('on');document.getElementById('cf').onsubmit=function(e){e.preventDefault();const fd=new FormData(this);const obj={};tab.fields.forEach(f=>{obj[f.k]=fd.get(f.k)||''});const data=gd(tid);obj.id=gid(data);data.push(obj);sd(tid,data);clModal();showToast('Data ditambahkan','s');swTab(tid)}}
+function openEdit(tid,rid){const tab=UC[CU].tabs.find(t=>t.id===tid);const data=gd(tid);const row=data.find(r=>r.id===rid);if(!row)return;let h='<div class="p-5"><h3 class="font-bold text-teal-900 mb-3"><i class="fas fa-edit mr-2 text-amber-600"></i>Edit '+tab.title+'</h3><form id="cf">';tab.fields.forEach(f=>{h+='<div class="mb-2"><label class="block text-xs font-semibold mb-1">'+f.l+'</label>';if(f.t==='select'){h+='<select name="'+f.k+'"><option value="">Pilih</option>';f.o.forEach(o=>{h+='<option value="'+o+'"'+(row[f.k]===o?' selected':'')+'>'+o+'</option>'});h+='</select>'}else if(f.t==='textarea'){h+='<textarea name="'+f.k+'" rows="2">'+(row[f.k]||'')+'</textarea>'}else{h+='<input type="'+f.t+'" name="'+f.k+'" value="'+(row[f.k]||'')+'">'}h+='</div>'});h+='<div class="flex justify-end gap-2 mt-3"><button type="button" onclick="clModal()" class="bt bo">Batal</button><button type="submit" class="bt bp">Update</button></div></form></div>';document.getElementById('mo-ct').innerHTML=h;document.getElementById('mo-ov').classList.add('on');document.getElementById('cf').onsubmit=function(e){e.preventDefault();const fd=new FormData(this);tab.fields.forEach(f=>{row[f.k]=fd.get(f.k)||''});sd(tid,data);clModal();showToast('Data diperbarui','s');swTab(tid)}}
+function delRow(tid,rid){if(!confirm('Yakin hapus?'))return;let d=gd(tid);d=d.filter(r=>r.id!==rid);sd(tid,d);showToast('Dihapus','i');swTab(tid)}
+function clModal(){document.getElementById('mo-ov').classList.remove('on')}
+
+/* ============================
+   PRINT & EXPORT
+   ============================ */
+function printTbl(tid){const cfg=UC[CU];const tab=cfg.tabs.find(t=>t.id===tid);const data=gd(tid);let ph='<html><head><title>'+tab.title+'</title><style>body{font-family:Arial;padding:20px}h2{color:#0D9488;margin:0}table{width:100%;border-collapse:collapse;margin-top:12px}th,td{border:1px solid #ddd;padding:6px;font-size:11px;text-align:left}th{background:#0D9488;color:#fff}.mt{font-size:10px;color:#999;margin-top:8px}</style></head><body><h2>Lontara Hospital</h2><div style="font-size:12px;color:#666">'+cfg.name+' — '+tab.title+'</div><table><thead><tr><th>No</th>';tab.fields.forEach(f=>{ph+='<th>'+f.l+'</th>'});ph+='</tr></thead><tbody>';data.forEach((row,i)=>{ph+='<tr><td>'+(i+1)+'</td>';tab.fields.forEach(f=>{ph+='<td>'+(row[f.k]||'-')+'</td>'});ph+='</tr>'});ph+='</tbody></table><div class="mt">Dicetak: '+new Date().toLocaleString('id-ID')+' | '+cfg.staff[0].n+'</div></body></html>';const w=window.open('','','width=900,height=600');w.document.write(ph);w.document.close();w.focus();setTimeout(()=>w.print(),500)}
+function expCSV(tid){const tab=UC[CU].tabs.find(t=>t.id===tid);const data=gd(tid);if(!data.length){showToast('Tidak ada data','e');return}let csv=tab.fields.map(f=>'"'+f.l+'"').join(',')+'\n';data.forEach(row=>{csv+=tab.fields.map(f=>'"'+(row[f.k]||'').toString().replace(/"/g,'""')+'"').join(',')+'\n'});const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=tab.title.replace(/\s+/g,'_')+'_'+new Date().toISOString().split('T')[0]+'.csv';a.click();showToast('Export berhasil','s')}
+
+/* ============================
+   LIVE CHAT
+   ============================ */
+function togChat(){document.getElementById('chat-box').classList.toggle('op');if(document.getElementById('chat-box').classList.contains('op'))loadPubChat()}
+function loadPubChat(){const msgs=gd('chats');const el=document.getElementById('chat-msgs');if(!msgs.length){el.innerHTML='<div class="text-center text-gray-400 text-xs py-6">Mulai percakapan</div>';return}let h='';msgs.forEach(m=>{if(m.sender==='visitor')h+='<div class="mb-2 flex justify-end"><div class="bg-teal-600 text-white rounded-lg rounded-br-sm px-3 py-2 max-w-[80%] text-xs"><div class="opacity-70 mb-0.5">'+m.name+'</div>'+m.text+'<div class="opacity-50 mt-1" style="font-size:9px">'+m.time+'</div></div></div>';else h+='<div class="mb-2 flex justify-start"><div class="bg-gray-100 rounded-lg rounded-bl-sm px-3 py-2 max-w-[80%] text-xs"><div class="text-teal-600 font-semibold mb-0.5">Humas</div>'+m.text+'<div class="text-gray-400 mt-1" style="font-size:9px">'+m.time+'</div></div></div>'});el.innerHTML=h;el.scrollTop=el.scrollHeight}
+function sendPubChat(){const nm=document.getElementById('chat-nm').value.trim()||'Pengunjung';const tx=document.getElementById('chat-inp').value.trim();if(!tx)return;const msgs=gd('chats');msgs.push({id:gid(msgs),sender:'visitor',name:nm,text:tx,time:new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}),date:new Date().toISOString().split('T')[0]});sd('chats',msgs);document.getElementById('chat-inp').value='';loadPubChat();setTimeout(()=>{const rp=['Terima kasih, pesan diterima.','Baik, kami sampaikan ke pihak terkait.','Halo! Ada yang bisa dibantu?'];const m2=gd('chats');m2.push({id:gid(m2),sender:'admin',name:'Humas LH',text:rp[Math.floor(Math.random()*rp.length)],time:new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}),date:new Date().toISOString().split('T')[0]});sd('chats',m2);loadPubChat()},2000)}
+function renderChatAdmin(){const msgs=gd('chats');let h='<div class="flex gap-2 mb-4 np"><button onclick="prnChat()" class="bt bo bsm"><i class="fas fa-print"></i> Cetak</button><button onclick="clrChat()" class="bt bdd bsm"><i class="fas fa-trash"></i> Hapus</button></div><div class="cd"><div class="p-3 bg-gradient-to-r from-teal-600 to-teal-500 text-white"><h3 class="font-bold text-sm"><i class="fas fa-comments mr-2"></i>Live Chat - Humas</h3></div><div id="adm-ca" class="p-3 overflow-y-auto sb-thin" style="max-height:340px;min-height:240px">';if(!msgs.length)h+='<div class="text-center text-gray-400 py-8">Belum ada pesan</div>';else msgs.forEach(m=>{if(m.sender==='visitor')h+='<div class="mb-2 flex justify-end"><div class="bg-teal-600 text-white rounded-lg rounded-br-sm px-3 py-2 max-w-[80%] text-xs"><div class="opacity-70 mb-0.5">'+m.name+'</div>'+m.text+'</div></div>';else h+='<div class="mb-2 flex justify-start"><div class="bg-gray-100 rounded-lg rounded-bl-sm px-3 py-2 max-w-[80%] text-xs"><div class="text-teal-600 font-semibold mb-0.5">Humas</div>'+m.text+'</div></div>'});h+='</div><div class="p-3 border-t flex gap-2"><input id="adm-ci" placeholder="Ketik balasan..." class="flex-1 text-xs" onkeydown="if(event.key===\'Enter\')sendAdm()"><button onclick="sendAdm()" class="bt bp bsm"><i class="fas fa-paper-plane"></i></button></div></div>';document.getElementById('dash-ct').innerHTML=h;const ca=document.getElementById('adm-ca');if(ca)ca.scrollTop=ca.scrollHeight}
+function sendAdm(){const i=document.getElementById('adm-ci');const tx=i.value.trim();if(!tx)return;const msgs=gd('chats');msgs.push({id:gid(msgs),sender:'admin',name:'Humas LH',text:tx,time:new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}),date:new Date().toISOString().split('T')[0]});sd('chats',msgs);i.value='';renderChatAdmin()}
+function clrChat(){if(!confirm('Hapus semua chat?'))return;sd('chats',[]);renderChatAdmin()}
+function prnChat(){const msgs=gd('chats');let ph='<html><head><title>Chat Log</title><style>body{font-family:Arial;padding:20px}table{width:100%;border-collapse:collapse;margin-top:12px}td,th{border:1px solid #ddd;padding:6px;font-size:11px;text-align:left}th{background:#0D9488;color:#fff}</style></head><body><h2 style="color:#0D9488">Chat Log - Lontara Hospital</h2><table><thead><tr><th>Waktu</th><th>Pengirim</th><th>Pesan</th></tr></thead><tbody>';msgs.forEach(m=>{ph+='<tr><td>'+(m.time||'-')+'</td><td>'+(m.sender==='visitor'?m.name:'Humas')+'</td><td>'+m.text+'</td></tr>'});ph+='</tbody></table></body></html>';const w=window.open('','','width=800,height=600');w.document.write(ph);w.document.close();w.focus();setTimeout(()=>w.print(),500)}
+
+/* ============================
+   SIDEBAR & TOAST
+   ============================ */
+function togSB(){const sb=document.getElementById('sbar');const mc=document.getElementById('marea');if(window.innerWidth<=768){sb.classList.toggle('mb')}else{sb.classList.toggle('off');mc.classList.toggle('wd')}}
+function showToast(msg,type){const t=document.getElementById('toast');t.textContent=msg;t.className='tt '+(type==='s'?'ts':type==='e'?'te':'ti');t.classList.add('on');setTimeout(()=>t.classList.remove('on'),3000)}
+function renderSvc(){const g=document.getElementById('svc-grid');let h='';SVC.forEach(s=>{h+='<div class="cd p-4 text-center hover:shadow-lg transition group"><div class="w-11 h-11 '+s.bg+' rounded-xl flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition"><i class="fas '+s.icon+' '+s.ic+' text-base"></i></div><h3 class="font-semibold text-xs mb-0.5">'+s.h+'</h3><p class="text-xs text-gray-500">'+s.d+'</p></div>'});g.innerHTML=h}
+
+/* ============================
+   INISIALISASI
+   ============================ */
+initData();renderSvc();renderPubFeedback();renderJadwalDokterPublik();document.getElementById('cw').style.display='block';
+</script>
+</body>
+</html>
